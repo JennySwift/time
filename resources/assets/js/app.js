@@ -31,9 +31,9 @@ Vue.component('input-group', require('./components/shared/InputGroupComponent.vu
 Vue.component('checkbox-group', require('./components/shared/CheckboxGroupComponent.vue'));
 
 //Components
-Vue.component('timer-popup', require('./components/TimerPopupComponent'));
-Vue.component('new-timer', require('./components/NewTimerComponent'));
-Vue.component('activity-popup', require('./components/ActivityPopupComponent'));
+Vue.component('timer-popup', require('./components/TimerPopupComponent.vue'));
+Vue.component('new-timer', require('./components/NewTimerComponent.vue'));
+Vue.component('activity-popup', require('./components/ActivityPopupComponent.vue'));
 
 //Transitions
 Vue.transition('fade', require('./transitions/FadeTransition'));
