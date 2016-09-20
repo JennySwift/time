@@ -220,21 +220,27 @@
             },
 
             /**
-             *
-             */
+            *
+            */
             getTotalMinutesForActivitiesForTheDay: function () {
-                helpers.get('/api/activities/getTotalMinutesForDay?date=' + this.date.sql, function (response) {
-                    this.activitiesWithDurationsForTheDay = response.data;
-                }.bind(this));
+                helpers.get({
+                    url: '/api/activities/getTotalMinutesForDay?date=' + this.shared.date.sql,
+                    callback: function (response) {
+                        this.activitiesWithDurationsForTheDay = response;
+                    }.bind(this)
+                });
             },
 
             /**
-             *
-             */
+            *
+            */
             getTotalMinutesForActivitiesForTheWeek: function () {
-                helpers.get('/api/activities/getTotalMinutesForWeek?date=' + this.date.sql, function (response) {
-                    this.activitiesWithDurationsForTheWeek = response.data;
-                }.bind(this));
+                helpers.get({
+                    url: '/api/activities/getTotalMinutesForWeek?date=' + this.shared.date.sql,
+                    callback: function (response) {
+                        this.activitiesWithDurationsForTheWeek = response;
+                    }.bind(this)
+                });
             },
 
             /**
