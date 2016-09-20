@@ -1,0 +1,75 @@
+@mixin seconds {
+    font-weight: lighter;
+    margin-left: 3px;
+}
+
+#timers-page {
+    > * {
+        margin-bottom: 20px;
+    }
+    #activities-and-timers-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        > * {
+            margin: 0px 40px;
+        }
+        table {
+            td, th {
+                padding: 7px 5px;
+                margin: 0;
+                .seconds {
+                    @include seconds;
+                }
+            }
+            td {
+                text-align: right;
+                &.activity {
+                    @include activityColumn;
+                }
+            }
+        }
+        @media (max-width: 320px) {
+            > * {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+    #timer-in-progress {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 30px;
+        > * {
+            margin: 0 20px;
+        }
+        @media (max-width: 320px) {
+            justify-content: space-between;
+        }
+    }
+    #new-timer, #new-manual-timer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        > * {
+            margin-right: 5px;
+        }
+        select {
+            max-width: 400px;
+        }
+        @media (max-width: 320px) {
+            .form-group {
+                width: 100%;
+                margin-right: 0;
+                button {
+                    width: 100%;
+                }
+            }
+            select {
+                max-width: inherit;
+            }
+        }
+    }
+}

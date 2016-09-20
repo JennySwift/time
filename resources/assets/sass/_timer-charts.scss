@@ -1,0 +1,58 @@
+#sleep-chart {
+    display: flex;
+    height: 760px;
+    justify-content: space-around;
+    margin-top: 50px;
+    #sleep-chart-times {
+        position: relative;
+        > * {
+            position: absolute;
+        }
+//        display: flex;
+//        flex-direction: column;
+//        justify-content: space-between;
+//        > * {
+//            padding: 3px 10px;
+//        }
+    }
+    #sleep-chart-entries {
+        display: flex;
+        overflow: scroll;
+        width: 850px;
+        .date-entries {
+//            margin: 0 20px;
+            border-right: 1px solid #777;
+            position: relative;
+            min-width: 50px;
+            &:first-child {
+                border-left: 1px solid #777;
+            }
+            .date {
+                position: absolute;
+                top: 0;
+            }
+            .time {
+                position: absolute;
+                width: 100%;
+                &.start {
+//                    background: $success;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    label {
+                        margin: 0;
+                    }
+                }
+                &.finish {
+                    background: coral;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    label {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

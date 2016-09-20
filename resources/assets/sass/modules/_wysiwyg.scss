@@ -1,0 +1,25 @@
+.wysiwyg-container {
+	width: 100%;
+	max-width: 600px;
+}
+.wysiwyg {
+	height: 350px;
+	width: 100%;
+	background: white;
+	overflow: scroll;
+	border-radius: 8px;
+	p {
+		text-align: left;
+		padding-left: 0;
+	}
+}
+
+.wysiwyg-toolbar {
+	display: flex;
+	padding: 5px 0;
+	a {
+		cursor: pointer;
+		font-size: 18px;
+		margin: 0 14px;
+	}
+}
