@@ -5,15 +5,12 @@
 
         <li id="menu-dropdown" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="fa fa-heart"></span>
+                <span class="fa fa-clock-o"></span>
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li><a v-link="{path: '/exercises'}" href="#">Exercises</a></li>
-                <li><a v-link="{path: '/exercise-units'}" href="#">Units</a></li>
-                <li><a v-link="{path: '/exercises/#/add'}" href="#">New Exercise</a></li>
-                <li><a v-link="{path: '/series/#/add'}" href="#">New Series</a></li>
-                <li><a v-link="{path: '/entries/#/add'}" href="#">New Exercise Entry</a></li>
+                <li><a v-link="{path: '/timers'}" href="#">Timers</a></li>
+                <li><a v-link="{path: '/activities'}" href="#">Activities</a></li>
             </ul>
         </li>
 
