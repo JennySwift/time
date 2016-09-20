@@ -119,9 +119,6 @@ class ActivitiesTest extends TestCase
      */
     public function it_can_create_an_activity()
     {
-        DB::beginTransaction();
-        $this->logInUser();
-
         $activity = [
             'name' => 'koala',
             'color' => 'red'
@@ -139,8 +136,6 @@ class ActivitiesTest extends TestCase
         $this->assertEquals('red', $content['color']);
 
         $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
-
-        DB::rollBack();
     }
 
     /**
@@ -149,9 +144,6 @@ class ActivitiesTest extends TestCase
      */
     public function it_can_update_an_activity()
     {
-        DB::beginTransaction();
-        $this->logInUser();
-
         $activity = Activity::forCurrentUser()->first();
         $response = $this->call('PUT', '/api/activities/'.$activity->id, [
             'name' => 'numbat',
@@ -168,8 +160,6 @@ class ActivitiesTest extends TestCase
         $this->assertEquals('blue', $content['color']);
 
         $this->assertEquals(200, $response->getStatusCode());
-
-        DB::rollBack();
     }
     
     /**
