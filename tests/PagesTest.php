@@ -11,6 +11,7 @@ class PagesTest extends TestCase
      */
     public function it_redirects_the_user_if_not_authenticated()
     {
+        Auth::logout();
         $response = $this->call('GET', '/');
 
         $this->assertEquals(302, $response->getStatusCode());
