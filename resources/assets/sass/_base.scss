@@ -23,7 +23,7 @@ html, body {
 
 body {
     padding-top: 60px;
-    color: #777;
+	font-family: "Annie Use Your Telescope";
     .container {
         padding-bottom: 60px;
         min-height: 100%;
@@ -73,6 +73,7 @@ thead {
 
 h1,h2,h3,h4,h5 {
 	text-align: center;
+	color: $base1;
 }
 
 p {

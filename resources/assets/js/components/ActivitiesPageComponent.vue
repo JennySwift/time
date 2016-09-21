@@ -49,7 +49,7 @@
             <tr>
                 <th>Name</th>
                 <th>Colour</th>
-                <th>Total duration</th>
+                <th>Total Duration</th>
             </tr>
             </thead>
             <tbody>
