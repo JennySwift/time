@@ -154,9 +154,6 @@
             }
 
         },
-        props: [
-
-        ],
         ready: function () {
             this.listen();
             this.checkForTimerInProgress();

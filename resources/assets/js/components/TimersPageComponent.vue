@@ -6,12 +6,6 @@
         >
         </date-navigation>
 
-        <timer-popup
-            :activities="activities"
-            :timers.sync="timers"
-        >
-        </timer-popup>
-
         <new-timer
             :activities="activities"
             :timers.sync="timers"
@@ -28,7 +22,7 @@
         <!--Activites with durations for the day-->
         <div id="activities-with-durations-for-day">
     <span
-        v-for="activity in activitiesWithDurationsForTheDay | filterBy activitiesFilter in 'name'"
+        v-for="activity in shared.activitiesWithDurationsForTheDay | filterBy activitiesFilter in 'name'"
         v-bind:style="{'background': activity.color}"
         class="label label-default">
         {{ activity.name }} {{ activity.totalMinutesForDay | formatDuration }}</span>
@@ -60,7 +54,8 @@
                         v-for="timer in timers
                 | filterBy activitiesFilter in 'activity.data.name'
                 | orderBy 'start' -1"
-                        v-on:click="showTimerPopup(timer)"
+                        v-link="{path: '/timers/' + timer.id}"
+                        v-on:click="selectTimer(timer)"
                         class="timer pointer"
                     >
                         <td class="activity">
@@ -106,7 +101,7 @@
                     </thead>
                     <tbody>
                     <tr
-                        v-for="activity in activitiesWithDurationsForTheWeek
+                        v-for="activity in shared.activitiesWithDurationsForTheWeek
                     | filterBy activitiesFilter in 'name'"
                     >
                         <td class="activity">
@@ -146,8 +141,6 @@
                 date: store.state.date,
                 timersFilter: false,
                 activitiesFilter: '',
-                activitiesWithDurationsForTheWeek: [],
-                activitiesWithDurationsForTheDay: [],
                 shared: store.state
             };
         },
@@ -192,10 +185,9 @@
 
             /**
              *
-             * @param timer
              */
-            showTimerPopup: function (timer) {
-                $.event.trigger('show-timer-popup', [timer]);
+            selectTimer: function (timer) {
+                store.set(timer, 'timer');
             },
 
             /**
@@ -221,59 +213,33 @@
             },
 
             /**
-            *
-            */
-            getTotalMinutesForActivitiesForTheDay: function () {
-                helpers.get({
-                    url: '/api/activities/getTotalMinutesForDay?date=' + this.shared.date.sql,
-                    callback: function (response) {
-                        this.activitiesWithDurationsForTheDay = response;
-                    }.bind(this)
-                });
-            },
-
-            /**
-            *
-            */
-            getTotalMinutesForActivitiesForTheWeek: function () {
-                helpers.get({
-                    url: '/api/activities/getTotalMinutesForWeek?date=' + this.shared.date.sql,
-                    callback: function (response) {
-                        this.activitiesWithDurationsForTheWeek = response;
-                    }.bind(this)
-                });
-            },
-
-            /**
              *
              */
             listen: function () {
                 var that = this;
                 $(document).on('date-changed', function (event) {
                     store.getTimers(that);
-                    that.getTotalMinutesForActivitiesForTheDay();
-                    that.getTotalMinutesForActivitiesForTheWeek();
+                    store.getTotalMinutesForActivitiesForTheDay();
+                    store.getTotalMinutesForActivitiesForTheWeek();
                 });
 
                 $(document).on('timer-deleted', function (event, timer) {
-                    that.getTotalMinutesForActivitiesForTheDay();
-                    that.getTotalMinutesForActivitiesForTheWeek();
+                    store.getTotalMinutesForActivitiesForTheDay();
+                    store.getTotalMinutesForActivitiesForTheWeek();
                 });
 
                 $(document).on('timer-stopped', function (event) {
-                    that.getTotalMinutesForActivitiesForTheDay();
-                    that.getTotalMinutesForActivitiesForTheWeek();
+                    store.getTotalMinutesForActivitiesForTheDay();
+                    store.getTotalMinutesForActivitiesForTheWeek();
                 });
 
                 $(document).on('manual-timer-created', function (event) {
-                    that.getTotalMinutesForActivitiesForTheDay();
-                    that.getTotalMinutesForActivitiesForTheWeek();
+                    store.getTotalMinutesForActivitiesForTheDay();
+                    store.getTotalMinutesForActivitiesForTheWeek();
                 });
             }
         },
         ready: function () {
-            this.getTotalMinutesForActivitiesForTheDay();
-            this.getTotalMinutesForActivitiesForTheWeek();
             this.listen();
         }
     };

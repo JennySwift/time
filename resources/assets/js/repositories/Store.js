@@ -22,7 +22,18 @@ module.exports = {
         activity: {},
         activityLoaded: false,
         timers: [],
-        timersLoaded: false
+        timersLoaded: false,
+        timer: {
+            id: '',
+            start: '',
+            finish: '',
+            activity: {
+                data: {}
+            }
+        },
+        timerLoaded: false,
+        activitiesWithDurationsForTheWeek: [],
+        activitiesWithDurationsForTheDay: []
     },
 
     /**
@@ -84,6 +95,30 @@ module.exports = {
             //Only add the timer if the date is on today or the timer is a manual entry
             store.state.timers.push(timer);
         }
+    },
+
+    /**
+     *
+     */
+    getTotalMinutesForActivitiesForTheDay: function () {
+        helpers.get({
+            url: '/api/activities/getTotalMinutesForDay?date=' + this.state.date.sql,
+            callback: function (response) {
+                this.state.activitiesWithDurationsForTheDay = response;
+            }.bind(this)
+        });
+    },
+
+    /**
+     *
+     */
+    getTotalMinutesForActivitiesForTheWeek: function () {
+        helpers.get({
+            url: '/api/activities/getTotalMinutesForWeek?date=' + this.state.date.sql,
+            callback: function (response) {
+                this.state.activitiesWithDurationsForTheWeek = response;
+            }.bind(this)
+        });
     },
 
     /**
