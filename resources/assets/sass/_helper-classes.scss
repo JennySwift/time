@@ -25,6 +25,15 @@
 	}
 }
 
+.btn-danger {
+	background: $danger1;
+	border-color: $danger2;
+	&:hover {
+		background: $danger2;
+		border-color: $danger1;
+	}
+}
+
 .vertical-center {
 	display: flex;
 	align-items: center;

@@ -162,6 +162,13 @@ li {
     background: #ffb347;
     border-color: #ffcc33; }
 
+.btn-danger {
+  background: #FF753A;
+  border-color: #ff5107; }
+  .btn-danger:hover {
+    background: #ff5107;
+    border-color: #FF753A; }
+
 .vertical-center {
   display: -ms-flexbox;
   display: flex;
