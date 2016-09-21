@@ -33,7 +33,7 @@ Vue.component('checkbox-group', require('./components/shared/CheckboxGroupCompon
 //Components
 Vue.component('timer-popup', require('./components/TimerPopupComponent.vue'));
 Vue.component('new-timer', require('./components/NewTimerComponent.vue'));
-Vue.component('activity-popup', require('./components/ActivityPopupComponent.vue'));
+Vue.component('activity-popup', require('./components/ActivityPageComponent.vue'));
 
 //Transitions
 Vue.transition('fade', require('./transitions/FadeTransition'));

@@ -15,6 +15,9 @@ router.map({
     '/activities': {
         component: require('./components/ActivitiesPageComponent.vue')
     },
+    '/activities/:id': {
+        component: require('./components/ActivityPageComponent.vue')
+    },
     '/activities/#/add': {
         component: require('./components/NewActivityComponent.vue')
     },

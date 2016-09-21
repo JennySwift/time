@@ -1,11 +1,6 @@
 <template>
     <div id="activities">
 
-        <activity-popup
-            :activities.sync="activities"
-        >
-        </activity-popup>
-
         <h3>Activities</h3>
 
         <table class="table table-bordered">
@@ -17,7 +12,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="activity in shared.activities" v-on:click="showActivityPopup(activity)" class="activity">
+                <tr v-for="activity in shared.activities" v-link="{path: '/activities/' + activity.id}" v-on:click="selectActivity(activity)" class="activity pointer">
                     <td class="activity-column"><span v-bind:style="{'background': activity.color}" class="label label-default">{{ activity.name }}</span></td>
                     <td>{{ activity.color }}</td>
                     <td>{{ activity.totalMinutes | formatDuration }}</td>
@@ -46,13 +41,12 @@
             }
         },
         methods: {
-
             /**
              *
              * @param activity
              */
-            showActivityPopup: function (activity) {
-                $.event.trigger('show-activity-popup', [activity]);
+            selectActivity: function (activity) {
+                store.set(activity, 'activity')
             }
         }
     };

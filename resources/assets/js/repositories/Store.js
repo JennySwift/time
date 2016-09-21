@@ -19,6 +19,8 @@ module.exports = {
         loading: false,
         activities: [],
         activitiesLoaded: false,
+        activity: {},
+        activityLoaded: false,
         timers: [],
         timersLoaded: false
     },
