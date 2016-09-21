@@ -559,7 +559,9 @@ li {
   margin-bottom: 7px; }
 
 label.input-group-addon {
-  min-width: 135px; }
+  min-width: 135px;
+  background: #ffb347;
+  color: white; }
 
 #login {
   padding-top: 85px; }

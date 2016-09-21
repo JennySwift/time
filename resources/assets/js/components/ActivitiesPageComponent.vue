@@ -6,42 +6,6 @@
         >
         </activity-popup>
 
-        <h3>New activity</h3>
-
-        <div id="new-activity">
-
-            <div class="form-group">
-                <label for="new-activity-name">Name</label>
-                <input
-                    v-model="newActivity.name"
-                    v-on:keyup.13="insertActivity()"
-                    type="text"
-                    id="new-activity-name"
-                    name="new-activity-name"
-                    placeholder="name"
-                    class="form-control"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="new-activity-color">Color</label>
-                <input
-                    v-model="newActivity.color"
-                    v-on:keyup.13="insertActivity()"
-                    type="text"
-                    id="new-activity-color"
-                    name="new-activity-color"
-                    placeholder="color"
-                    class="form-control"
-                >
-            </div>
-
-            <div class="form-group">
-                <button v-on:click="insertActivity()" class="btn btn-success">Save</button>
-            </div>
-
-        </div>
-
         <h3>Activities</h3>
 
         <table class="table table-bordered">
@@ -72,8 +36,7 @@
         template: '#activities-page-template',
         data: function () {
             return {
-                shared: store.state,
-                newActivity: {},
+                shared: store.state
             };
         },
         computed: {
@@ -88,20 +51,6 @@
             }
         },
         methods: {
-
-            /**
-             *
-             */
-            insertActivity: function () {
-                var data = {
-                    name: this.newActivity.name,
-                    color: this.newActivity.color
-                };
-
-                helpers.post('/api/activities', data, 'Activity created', function (response) {
-                    store.add(response.data, 'activities');
-                }.bind(this));
-            },
 
             /**
              *

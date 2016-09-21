@@ -15,6 +15,9 @@ router.map({
     '/activities': {
         component: require('./components/ActivitiesPageComponent.vue')
     },
+    '/activities/#/add': {
+        component: require('./components/NewActivityComponent.vue')
+    },
     '/graphs': {
         component: require('./components/GraphsPageComponent.vue')
     }

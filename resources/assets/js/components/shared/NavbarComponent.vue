@@ -11,6 +11,7 @@
             <ul class="dropdown-menu" role="menu">
                 <li><a v-link="{path: '/timers'}" href="#">Timers</a></li>
                 <li><a v-link="{path: '/activities'}" href="#">Activities</a></li>
+                <li><a v-link="{path: '/activities/#/add'}" href="#">New Activity</a></li>
             </ul>
         </li>
 
