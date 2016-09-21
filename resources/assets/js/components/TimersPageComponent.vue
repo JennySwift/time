@@ -43,7 +43,7 @@
         <div id="activities-and-timers-container">
             <!--Timers-->
             <div id="timers">
-                <table class="table table-bordered">
+                <table class="table table-bordered" v-if="timers.length > 0">
 
                     <thead>
                         <tr>
@@ -89,6 +89,7 @@
                     </tbody>
 
                 </table>
+                <p v-else>No timers here</p>
             </div>
 
             <!--Activites with durations for the week-->
