@@ -15,15 +15,15 @@
     color: $danger;
 }
 
-//.btn-success {
-//	background: $base2;
-//	border-color: $base1;
-//	&:hover {
-//		background: $base1;
-//		border-color: $base2;
-//		//background: darken($base1, 10%);
-//	}
-//}
+.btn-success {
+	background: $success;
+	border-color: lighten($success, 5%);
+	&:hover {
+		background: lighten($success, 5%);
+		border-color: $success;
+		//background: darken($base1, 10%);
+	}
+}
 
 .btn-danger {
 	background: $danger1;

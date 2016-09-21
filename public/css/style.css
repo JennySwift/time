@@ -155,6 +155,13 @@ li {
   cursor: pointer;
   color: #d9534f; }
 
+.btn-success {
+  background: #24CCB4;
+  border-color: #2fdac2; }
+  .btn-success:hover {
+    background: #2fdac2;
+    border-color: #24CCB4; }
+
 .btn-danger {
   background: #FF753A;
   border-color: #ff5107; }
