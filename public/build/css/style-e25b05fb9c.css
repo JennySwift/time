@@ -18,7 +18,7 @@ body {
   padding-top: 60px;
   font-family: "Annie Use Your Telescope"; }
   body .container {
-    padding-bottom: 60px;
+    padding-bottom: 25px;
     min-height: 100%; }
   body footer {
     display: -ms-flexbox;
@@ -26,10 +26,19 @@ body {
     -ms-flex-pack: distribute;
     justify-content: space-around;
     padding: 11px;
-    background: #000000;
-    height: 60px;
+    background: #43cea2;
+    /* fallback for old browsers */
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #ffb347, #ffcc33);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    height: 25px;
     position: relative;
-    margin-top: -60px; }
+    margin-top: -25px; }
+    body footer a {
+      color: white; }
+      body footer a:hover {
+        color: white; }
     body footer li {
       display: -ms-flexbox;
       display: flex;
@@ -44,6 +53,10 @@ thead {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   background-attachment: fixed; }
+  thead a {
+    color: white; }
+    thead a:hover {
+      color: white; }
 
 h1, h2, h3, h4, h5 {
   text-align: center;
@@ -261,6 +274,10 @@ li {
   color: white;
   padding: 0;
   margin: 0; }
+  #navbar a {
+    color: white; }
+    #navbar a:hover {
+      color: white; }
   @media (max-width: 320px) {
     #navbar .big-screens {
       display: none; } }
