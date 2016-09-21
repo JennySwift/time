@@ -249,7 +249,8 @@ li {
   #navbar .dropdown-menu {
     min-width: inherit; }
     #navbar .dropdown-menu a {
-      padding: 0 8px; }
+      padding: 0 8px;
+      color: #5bc0de; }
   #navbar > li {
     display: -ms-flexbox;
     display: flex;
