@@ -17,7 +17,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="activity in activities" v-on:click="showActivityPopup(activity)" class="activity">
+                <tr v-for="activity in shared.activities" v-on:click="showActivityPopup(activity)" class="activity">
                     <td class="activity-column"><span v-bind:style="{'background': activity.color}" class="label label-default">{{ activity.name }}</span></td>
                     <td>{{ activity.color }}</td>
                     <td>{{ activity.totalMinutes | formatDuration }}</td>
@@ -39,11 +39,6 @@
                 shared: store.state
             };
         },
-        computed: {
-            activities: function () {
-                return this.shared.activities;
-            }
-        },
         components: {},
         filters: {
             formatDuration: function (minutes) {
@@ -59,12 +54,6 @@
             showActivityPopup: function (activity) {
                 $.event.trigger('show-activity-popup', [activity]);
             }
-        },
-        props: [
-            //data to be received from parent
-        ],
-        ready: function () {
-
         }
     };
 
