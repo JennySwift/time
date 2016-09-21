@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@jennyswift/feedback": "0.0.2",
+    "@jennyswift/vue-autocomplete": "^0.1.2",
     "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
     "gulp": "^3.9.0",

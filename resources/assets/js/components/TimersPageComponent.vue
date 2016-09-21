@@ -27,24 +27,13 @@
         >
         </date-navigation>
 
-        <new-timer
-            :activities="activities"
-            :timers.sync="timers"
-        >
-        </new-timer>
-
-        <router-view
-            :activities="activities"
-            :timers.sync="timers"
-            :date="date"
-        >
-        </router-view>
+        <new-timer></new-timer>
 
         <div id="activities-and-timers-container">
             <!--Timers-->
             <div id="timers">
                 <h2>Timers</h2>
-                <table class="table table-bordered" v-if="timers.length > 0">
+                <table class="table table-bordered" v-if="shared.timers.length > 0">
 
                     <thead>
                         <tr>
@@ -58,9 +47,9 @@
 
                     <tbody>
                     <tr
-                        v-for="timer in timers
-                | filterBy activitiesFilter in 'activity.data.name'
-                | orderBy 'start' -1"
+                        v-for="timer in shared.timers
+                            | filterBy activitiesFilter in 'activity.data.name'
+                            | orderBy 'start' -1"
                         v-link="{path: '/timers/' + timer.id}"
                         v-on:click="selectTimer(timer)"
                         class="timer pointer"
@@ -107,27 +96,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr
-                        v-for="activity in shared.activitiesWithDurationsForTheWeek
-                    | filterBy activitiesFilter in 'name'"
-                    >
-                        <td class="activity">
-                    <span
-                        v-bind:style="{'background': activity.color}"
-                        class="label label-default"
-                    >
-                        {{ activity.name }}
-                    </span>
-                        </td>
-                        <td>{{ activity.totalMinutesForWeek | formatDuration }}</td>
-                        <td>{{ activity.averageMinutesPerDayForWeek | formatDuration }}</td>
-                        <td>
-                            <div v-if="activity.totalMinutesForAllTime">
-                                {{ activity.totalMinutesForAllTime | formatDuration }}
-                            </div>
-                            <div v-else>-</div>
-                        </td>
-                    </tr>
+                        <tr
+                            v-for="activity in shared.activitiesWithDurationsForTheWeek
+                                | filterBy activitiesFilter in 'name'"
+                        >
+                            <td class="activity">
+                                <span
+                                    v-bind:style="{'background': activity.color}"
+                                    class="label label-default"
+                                >
+                                    {{ activity.name }}
+                                </span>
+                            </td>
+                            <td>{{ activity.totalMinutesForWeek | formatDuration }}</td>
+                            <td>{{ activity.averageMinutesPerDayForWeek | formatDuration }}</td>
+                            <td>
+                                <div v-if="activity.totalMinutesForAllTime">
+                                    {{ activity.totalMinutesForAllTime | formatDuration }}
+                                </div>
+                                <div v-else>-</div>
+                            </td>
+                        </tr>
                     </tbody>
 
                 </table>
@@ -150,14 +139,6 @@
                 activitiesFilter: '',
                 shared: store.state
             };
-        },
-        computed: {
-            activities: function () {
-                return this.shared.activities;
-            },
-            timers: function () {
-                return this.shared.timers;
-            }
         },
         filters: {
             formatDateTime: function (dateTime, format) {

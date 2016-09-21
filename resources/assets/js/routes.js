@@ -15,6 +15,9 @@ router.map({
     '/timers/:id': {
         component: require('./components/TimerPageComponent.vue')
     },
+    '/timers/#/add-manual': {
+        component: require('./components/NewManualTimerComponent.vue')
+    },
     '/activities': {
         component: require('./components/ActivitiesPageComponent.vue')
     },

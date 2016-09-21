@@ -12,6 +12,7 @@
                 <li><a v-link="{path: '/timers'}" href="#">Timers</a></li>
                 <li><a v-link="{path: '/activities'}" href="#">Activities</a></li>
                 <li><a v-link="{path: '/activities/#/add'}" href="#">New Activity</a></li>
+                <li><a v-link="{path: '/timers/#/add-manual'}" href="#">New Manual Timer</a></li>
             </ul>
         </li>
 

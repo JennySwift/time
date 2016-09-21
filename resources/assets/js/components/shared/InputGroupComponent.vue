@@ -17,21 +17,18 @@
             class="form-control"
         >
 
-        <!--Select-->
-        <select
+        <!--Autocomplete-->
+        <autocomplete
             v-if="options"
-            v-model="model"
-            v-on:keyup.13="enter()"
-            id="id"
-            class="form-control"
+            :input-id="id"
+            :prop="optionsProp"
+            :unfiltered-options="options"
+            :function-on-enter="enter"
+            :selected.sync="model"
+            :option-partial="optionPartial"
         >
-            <option
-                v-for="option in options"
-                v-bind:value="option"
-            >
-                {{getOptionText(option)}}
-            </option>
-        </select>
+        </autocomplete>
+
     </div>
 
 
@@ -40,24 +37,10 @@
 </template>
 
 <script>
+
     module.exports = {
         methods: {
-            getOptionText: function (option) {
-                var text = '';
-                if (!this.optionsProp) {
-                    text = option;
-                }
 
-                else {
-                    text = option[this.optionsProp];
-                }
-
-                if (this.optionsAdditionalText) {
-                    text+= this.optionsAdditionalText;
-                }
-
-                return text;
-            }
         },
         props: [
             'label',
@@ -69,7 +52,8 @@
             'optionsAdditionalText',
             'tooltipId',
             //Method to run on enter
-            'enter'
+            'enter',
+            'optionPartial'
         ]
     };
 </script>
