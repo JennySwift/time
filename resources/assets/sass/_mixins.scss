@@ -13,6 +13,14 @@
 	}
 }
 
+@mixin baseFont {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+@mixin characterFont {
+	font-family: "Annie Use Your Telescope"
+}
+
 @mixin gradient {
 	background: #43cea2; /* fallback for old browsers */
 	background: -webkit-linear-gradient(to left, $base1 , $base2); /* Chrome 10-25, Safari 5.1-6 */

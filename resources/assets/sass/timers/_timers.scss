@@ -9,16 +9,16 @@
         justify-content: center;
         .label {
             margin-right: 5px;
-            font-size: 14px;
+            //font-size: 14px;
         }
     }
     #activities-and-timers-container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-wrap: wrap;
-        > * {
-            margin: 0px 40px;
-        }
+        //> * {
+        //    margin: 0px 40px;
+        //}
         table {
             td, th {
                 padding: 7px 5px;
@@ -42,19 +42,20 @@
         }
     }
     #timer-in-progress {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+        //display: flex;
+        //justify-content: center;
+        //align-items: center;
+        //flex-wrap: wrap;
         font-size: 30px;
-        > * {
-            margin: 0 20px;
-        }
-        @media (max-width: 320px) {
-            justify-content: space-between;
-        }
+        //@media (max-width: 320px) {
+        //    justify-content: space-between;
+        //}
         #timer-clock {
             min-width: 90px;
+            @include baseFont;
+        }
+        button {
+            width: 100%;
         }
     }
     #new-timer, #new-manual-timer {

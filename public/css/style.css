@@ -106,10 +106,14 @@ input {
 input[type="checkbox"] {
   margin: 0; }
 
+.label {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+
 table {
   text-align: center; }
   table td {
-    vertical-align: middle !important; }
+    vertical-align: middle !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
   @media (max-width: 600px) {
     table th {
       font-size: 11px; } }
@@ -717,18 +721,15 @@ label.input-group-addon {
   -ms-flex-pack: center;
   justify-content: center; }
   #timers-page #activities-with-durations-for-day .label {
-    margin-right: 5px;
-    font-size: 14px; }
+    margin-right: 5px; }
 
 #timers-page #activities-and-timers-container {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
-  #timers-page #activities-and-timers-container > * {
-    margin: 0px 40px; }
   #timers-page #activities-and-timers-container table td, #timers-page #activities-and-timers-container table th {
     padding: 7px 5px;
     margin: 0; }
@@ -749,23 +750,12 @@ label.input-group-addon {
       width: 100%; } }
 
 #timers-page #timer-in-progress {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   font-size: 30px; }
-  #timers-page #timer-in-progress > * {
-    margin: 0 20px; }
-  @media (max-width: 320px) {
-    #timers-page #timer-in-progress {
-      -ms-flex-pack: justify;
-      justify-content: space-between; } }
   #timers-page #timer-in-progress #timer-clock {
-    min-width: 90px; }
+    min-width: 90px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+  #timers-page #timer-in-progress button {
+    width: 100%; }
 
 #timers-page #new-timer, #timers-page #new-manual-timer {
   display: -ms-flexbox;

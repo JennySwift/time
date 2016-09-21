@@ -25,7 +25,7 @@ $footerHeight: 25px;
 
 body {
     padding-top: 55px;
-	font-family: "Annie Use Your Telescope";
+	@include characterFont;
     .container {
         padding-bottom: $footerHeight;
         min-height: 100%;
@@ -145,10 +145,13 @@ input[type="checkbox"] {
 }
 
 
-
+.label {
+	@include baseFont;
+}
 table {
 	td {
 		vertical-align: middle !important;
+		@include baseFont;
 	}
 	text-align: center;
 	th {

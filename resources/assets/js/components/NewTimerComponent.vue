@@ -24,10 +24,9 @@
             </div>
         </div>
 
-        <div v-show="timerInProgress && shared.showTimerInProgress" id="timer-in-progress">
-            <h2 v-if="timerInProgress.activity">{{ timerInProgress.activity.data.name }}</h2>
-            <div v-show="shared.showTimerInProgress" id="timer-clock">{{ time | formatDurationFromSeconds }}</div>
-            <div><button v-on:click="stopTimer()" class="btn btn-danger btn-sm">Stop</button></div>
+        <div v-if="timerInProgress && timerInProgress.activity && shared.showTimerInProgress" id="timer-in-progress">
+            <h2 id="timer-clock">{{ timerInProgress.activity.data.name }}: <span>{{ time | formatDurationFromSeconds }}</span></h2>
+            <button v-on:click="stopTimer()" class="btn btn-danger btn-sm">Stop</button>
         </div>
     </div>
 </template>
