@@ -46,10 +46,19 @@ body {
     }
 }
 
-th {
-	background: $base;
-	color: white;
+thead {
+	@include gradient;
+	background-attachment: fixed;
+	th {
+
+		//background: $base1;
+		//color: $base2;
+	}
 }
+
+//tr {
+//	@include gradient;
+//}
 
 
 

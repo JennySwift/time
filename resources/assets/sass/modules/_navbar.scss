@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     color: #888;
-    background: $info;
+    @include gradient;
     padding: 0;
     margin: 0;
     @media (max-width: 320px) {
@@ -18,7 +18,7 @@
         min-width: inherit;
         a {
             padding: 0 8px;
-            color: $base;
+            color: $base2;
         }
     }
     > li {

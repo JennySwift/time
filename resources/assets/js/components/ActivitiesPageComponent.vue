@@ -45,17 +45,22 @@
         <h3>Activities</h3>
 
         <table class="table table-bordered">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Colour</th>
                 <th>Total duration</th>
             </tr>
+            </thead>
+            <tbody>
+                <tr v-for="activity in activities" v-on:click="showActivityPopup(activity)" class="activity">
+                    <td class="activity-column"><span v-bind:style="{'background': activity.color}" class="label label-default">{{ activity.name }}</span></td>
+                    <td>{{ activity.color }}</td>
+                    <td>{{ activity.totalMinutes | formatDuration }}</td>
+                </tr>
+            </tbody>
 
-            <tr v-for="activity in activities" v-on:click="showActivityPopup(activity)" class="activity">
-                <td class="activity-column"><span v-bind:style="{'background': activity.color}" class="label label-default">{{ activity.name }}</span></td>
-                <td>{{ activity.color }}</td>
-                <td>{{ activity.totalMinutes | formatDuration }}</td>
-            </tr>
+
 
         </table>
 

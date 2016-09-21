@@ -46,13 +46,13 @@
                 <table class="table table-bordered">
 
                     <thead>
-                    <tr>
-                        <th>Activity</th>
-                        <th>Duration</th>
-                        <th>Duration today</th>
-                        <th>Start</th>
-                        <th>End</th>
-                    </tr>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Duration</th>
+                            <th>Duration today</th>
+                            <th>Start</th>
+                            <th>End</th>
+                        </tr>
                     </thead>
 
                     <tbody>
@@ -96,12 +96,12 @@
 
                 <table class="table table-bordered">
                     <thead>
-                    <tr>
-                        <th>Activity</th>
-                        <th>Duration for week</th>
-                        <th>Avg/day for week</th>
-                        <th>Duration for all time</th>
-                    </tr>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Duration for week</th>
+                            <th>Avg/day for week</th>
+                            <th>Duration for all time</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <tr

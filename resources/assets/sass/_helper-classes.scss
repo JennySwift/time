@@ -15,6 +15,13 @@
     color: $danger;
 }
 
+.btn-success {
+	background: $base1;
+	&:hover {
+		background: darken($base1, 10%);
+	}
+}
+
 .vertical-center {
 	display: flex;
 	align-items: center;
