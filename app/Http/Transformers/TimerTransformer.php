@@ -45,12 +45,11 @@ class TimerTransformer extends TransformerAbstract
             'id' => $timer->id,
 //            'start' => Carbon::createFromFormat('Y-m-d H:i:s', $timer->start),
             'start' => $timer->start,
-            'startDate' => $start->format('d/m/y')
+            'startDate' => $start->format('d/m/y'),
+            'finish' => $timer->finish
         ];
 
         if ($timer->finish) {
-//            $array['finish'] = Carbon::createFromFormat('Y-m-d H:i:s', $timer->finish);
-            $array['finish'] = $timer->finish;
             $array['hours'] = $timer->hours;
             $array['minutes'] = $timer->minutes;
             $array['durationInMinutes'] = $timer->totalMinutes;

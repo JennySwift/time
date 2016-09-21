@@ -75,6 +75,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         $this->assertArrayHasKey('id', $timer);
         $this->assertArrayHasKey('start', $timer);
+        $this->assertArrayHasKey('finish', $timer);
         $this->assertArrayHasKey('startDate', $timer);
         $this->assertArrayHasKey('hours', $timer);
         $this->assertArrayHasKey('minutes', $timer);

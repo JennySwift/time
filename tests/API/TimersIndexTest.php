@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -49,23 +50,62 @@ class TimersIndexTest extends TestCase
      */
     public function it_gets_the_timers_for_a_day()
     {
-        $date = Carbon::yesterday();
+        $content = $this->getTimers(Carbon::yesterday());
+
+        $this->assertEquals(75, $content[0]['durationInMinutesForDay']);
+        $this->assertEquals(180, $content[1]['durationInMinutesForDay']);
+        $this->assertEquals(60, $content[2]['durationInMinutesForDay']);
+        $this->assertEquals(510, $content[3]['durationInMinutesForDay']);
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function it_gets_the_timers_for_a_day_without_the_timer_in_progress()
+    {
+        $this->startTimer();
+        $content = $this->getTimers(Carbon::today());
+//dd($content);
+        foreach ($content as $timer) {
+            $this->assertNotNull($timer['finish']);
+        }
+    }
+
+    /*
+     *
+     */
+    private function startTimer()
+    {
+        $start = '2015-12-01 21:00:00';
+
+        $timer = [
+            'start' => $start,
+            'activity_id' => Activity::where('name', 'work')->first()->id
+        ];
+
+        $response = $this->call('POST', '/api/timers', $timer);
+        $this->seeInDatabase('timers', ['start' => $start]);
+    }
+
+    /**
+     * @param $date
+     * @return mixed
+     */
+    private function getTimers($date)
+    {
         $response = $this->call('GET', '/api/timers?date=' . $date->copy()->format('Y-m-d'));
         $content = json_decode($response->getContent(), true);
 //      dd($content);
 
         $this->checkTimerKeysExist($content[0]);
 
-        $this->assertEquals(75, $content[0]['durationInMinutesForDay']);
-        $this->assertEquals(180, $content[1]['durationInMinutesForDay']);
-        $this->assertEquals(60, $content[2]['durationInMinutesForDay']);
-        $this->assertEquals(510, $content[3]['durationInMinutesForDay']);
-
         //Todo: check the values are correct
         $this->assertContains($date->copy()->format('Y-m-d'), $content[0]['start']);
-//        $this->assertEquals($date->copy()->format('Y-m-d'), $content[0]['startDate']);
 
         $this->assertEquals(200, $response->getStatusCode());
+
+        return $content;
     }
 
 }

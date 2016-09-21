@@ -37,6 +37,7 @@ class TimersRepository {
                 $q->where('finish', 'LIKE', $dateString)
                     ->orWhere('start', 'LIKE', $dateString);
             })
+            ->whereNotNull('finish')
             ->get();
     }
 

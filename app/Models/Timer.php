@@ -117,6 +117,8 @@ class Timer extends Model
      */
     public function getFinish()
     {
+        if (!$this->finish) return false;
+
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->finish);
     }
 
