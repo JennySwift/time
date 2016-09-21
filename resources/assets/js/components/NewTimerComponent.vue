@@ -67,22 +67,27 @@
         methods: {
 
             /**
-             *
-             */
+            *
+            */
             startTimer: function () {
                 var data = TimersRepository.setData(this.newTimer);
                 //So the previous timer's time isn't displayed at the start
                 this.time = 0;
 
-                helpers.post('/api/timers', data, 'Timer started', function (response) {
-                    this.timerInProgress = response.data;
-                    this.setTimerInProgress();
-                }.bind(this));
+                helpers.post({
+                    url: '/api/timers',
+                    data: data,
+                    message: 'Timer started',
+                    callback: function (response) {
+                        this.timerInProgress = response;
+                        this.setTimerInProgress();
+                    }.bind(this)
+                });
             },
 
             /**
-             *
-             */
+            *
+            */
             stopTimer: function () {
                 clearInterval(this.secondsInterval);
 
@@ -90,10 +95,15 @@
                     finish: TimersRepository.calculateFinishTime(this.timerInProgress)
                 };
 
-                helpers.put('/api/timers/' + this.timerInProgress.id, data, 'Timer finished', function (response) {
-                    this.timerInProgress = false;
-                    store.addTimer(response.data);
-                }.bind(this));
+                helpers.put({
+                    url: '/api/timers/' + this.timerInProgress.id,
+                    data: data,
+                    message: 'Timer finished',
+                    callback: function (response) {
+                        this.timerInProgress = false;
+                        store.addTimer(response);
+                    }.bind(this)
+                });
             },
 
             /**
@@ -104,15 +114,18 @@
             },
 
             /**
-             *
-             */
+            *
+            */
             checkForTimerInProgress: function () {
-                helpers.get('/api/timers/checkForTimerInProgress', function (response) {
-                    if (response.data.activity) {
-                        this.timerInProgress = response.data;
-                        this.setTimerInProgress();
-                    }
-                }.bind(this));
+                helpers.get({
+                    url: '/api/timers/checkForTimerInProgress',
+                    callback: function (response) {
+                        if (response.activity) {
+                            this.timerInProgress = response;
+                            this.setTimerInProgress();
+                        }
+                    }.bind(this)
+                });
             },
 
             /**
