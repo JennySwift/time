@@ -16,9 +16,12 @@
 }
 
 .btn-success {
-	background: $base1;
+	background: $base2;
+	border-color: $base1;
 	&:hover {
-		background: darken($base1, 10%);
+		background: $base1;
+		border-color: $base2;
+		//background: darken($base1, 10%);
 	}
 }
 

@@ -138,9 +138,11 @@ li {
   color: #d9534f; }
 
 .btn-success {
-  background: #ffb347; }
+  background: #ffcc33;
+  border-color: #ffb347; }
   .btn-success:hover {
-    background: #ff9e14; }
+    background: #ffb347;
+    border-color: #ffcc33; }
 
 .vertical-center {
   display: -ms-flexbox;
