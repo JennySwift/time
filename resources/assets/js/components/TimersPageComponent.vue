@@ -1,6 +1,16 @@
 <template>
     <div id="timers-page">
 
+        <!--Activities filter-->
+        <div class="input-group-container">
+            <input-group
+                label="Filter Activities:"
+                :model.sync="activitiesFilter"
+                id="activities-filter"
+            >
+            </input-group>
+        </div>
+
         <date-navigation
             :date.sync="date"
         >
@@ -26,12 +36,6 @@
         v-bind:style="{'background': activity.color}"
         class="label label-default">
         {{ activity.name }} {{ activity.totalMinutesForDay | formatDuration }}</span>
-        </div>
-
-        <!--Activities filter-->
-        <div>
-            <label>Filter activities</label>
-            <input v-model="activitiesFilter" type="text"/>
         </div>
 
         <div id="activities-and-timers-container">
