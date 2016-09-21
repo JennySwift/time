@@ -753,6 +753,8 @@ label.input-group-addon {
   display: flex;
   -ms-flex-pack: center;
   justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   font-size: 30px; }
@@ -762,6 +764,8 @@ label.input-group-addon {
     #timers-page #timer-in-progress {
       -ms-flex-pack: justify;
       justify-content: space-between; } }
+  #timers-page #timer-in-progress #timer-clock {
+    min-width: 90px; }
 
 #timers-page #new-timer, #timers-page #new-manual-timer {
   display: -ms-flexbox;

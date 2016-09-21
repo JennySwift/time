@@ -44,6 +44,7 @@
     #timer-in-progress {
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
         font-size: 30px;
         > * {
@@ -51,6 +52,9 @@
         }
         @media (max-width: 320px) {
             justify-content: space-between;
+        }
+        #timer-clock {
+            min-width: 90px;
         }
     }
     #new-timer, #new-manual-timer {

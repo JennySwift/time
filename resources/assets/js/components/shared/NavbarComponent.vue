@@ -13,6 +13,10 @@
                 <li><a v-link="{path: '/activities'}" href="#">Activities</a></li>
                 <li><a v-link="{path: '/activities/#/add'}" href="#">New Activity</a></li>
                 <li><a v-link="{path: '/timers/#/add-manual'}" href="#">New Manual Timer</a></li>
+                <li>
+                    <a v-if="shared.showTimerInProgress" v-on:click="hideTimerInProgress()" href="#">Hide Timer In Progress</a>
+                    <a v-else v-on:click="showTimerInProgress()" href="#">Show Timer In Progress</a>
+                </li>
             </ul>
         </li>
 
@@ -55,6 +59,20 @@
              */
             showFilters: function () {
                 store.set(true, 'showFilters')
+            },
+
+            /**
+             *
+             */
+            hideTimerInProgress: function () {
+                store.set(false, 'showTimerInProgress');
+            },
+
+            /**
+             *
+             */
+            showTimerInProgress: function () {
+                store.set(true, 'showTimerInProgress');
             }
         },
         props: [

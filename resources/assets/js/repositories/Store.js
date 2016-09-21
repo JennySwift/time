@@ -17,6 +17,7 @@ module.exports = {
             sql: helpers.formatDateToSql('today')
         },
         loading: false,
+        showTimerInProgress: true,
         activities: [],
         activitiesLoaded: false,
         activity: {},
@@ -49,6 +50,13 @@ module.exports = {
     hideLoading: function () {
         this.state.loading = false;
     },
+
+    /**
+     * Show or hide the timer in progress
+     */
+    // toggleTimerInProgress: function () {
+    //     this.state.showTimerInProgress = !this.state.showTimerInProgress;
+    // },
 
     /**
      *
