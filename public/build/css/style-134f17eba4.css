@@ -663,4 +663,147 @@ label.input-group-addon {
   #register #remember-me-container label {
     margin-bottom: 0; }
 
+#sleep-chart {
+  display: -ms-flexbox;
+  display: flex;
+  height: 760px;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-top: 50px; }
+  #sleep-chart #sleep-chart-times {
+    position: relative; }
+    #sleep-chart #sleep-chart-times > * {
+      position: absolute; }
+  #sleep-chart #sleep-chart-entries {
+    display: -ms-flexbox;
+    display: flex;
+    overflow: scroll;
+    width: 850px; }
+    #sleep-chart #sleep-chart-entries .date-entries {
+      border-right: 1px solid #777;
+      position: relative;
+      min-width: 50px; }
+      #sleep-chart #sleep-chart-entries .date-entries:first-child {
+        border-left: 1px solid #777; }
+      #sleep-chart #sleep-chart-entries .date-entries .date {
+        position: absolute;
+        top: 0; }
+      #sleep-chart #sleep-chart-entries .date-entries .time {
+        position: absolute;
+        width: 100%; }
+        #sleep-chart #sleep-chart-entries .date-entries .time.start {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -ms-flex-pack: end;
+          justify-content: flex-end; }
+          #sleep-chart #sleep-chart-entries .date-entries .time.start label {
+            margin: 0; }
+        #sleep-chart #sleep-chart-entries .date-entries .time.finish {
+          background: coral;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -ms-flex-pack: end;
+          justify-content: flex-end; }
+          #sleep-chart #sleep-chart-entries .date-entries .time.finish label {
+            margin: 0; }
+
+#timers-page #activities-with-durations-for-day {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center; }
+  #timers-page #activities-with-durations-for-day .label {
+    margin-right: 5px;
+    font-size: 14px; }
+
+#timers-page #activities-and-timers-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  #timers-page #activities-and-timers-container > * {
+    margin: 0px 40px; }
+  #timers-page #activities-and-timers-container table td, #timers-page #activities-and-timers-container table th {
+    padding: 7px 5px;
+    margin: 0; }
+    #timers-page #activities-and-timers-container table td .seconds, #timers-page #activities-and-timers-container table th .seconds {
+      font-weight: lighter;
+      margin-left: 3px; }
+  #timers-page #activities-and-timers-container table td {
+    text-align: right; }
+    #timers-page #activities-and-timers-container table td.activity {
+      text-align: left; }
+      @media (max-width: 320px) {
+        #timers-page #activities-and-timers-container table td.activity {
+          max-width: 80px;
+          overflow: scroll; } }
+  @media (max-width: 320px) {
+    #timers-page #activities-and-timers-container > * {
+      margin: 0;
+      width: 100%; } }
+
+#timers-page #timer-in-progress {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  font-size: 30px; }
+  #timers-page #timer-in-progress > * {
+    margin: 0 20px; }
+  @media (max-width: 320px) {
+    #timers-page #timer-in-progress {
+      -ms-flex-pack: justify;
+      justify-content: space-between; } }
+
+#timers-page #new-timer, #timers-page #new-manual-timer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  #timers-page #new-timer > *, #timers-page #new-manual-timer > * {
+    margin-right: 5px; }
+  #timers-page #new-timer select, #timers-page #new-manual-timer select {
+    max-width: 400px; }
+  @media (max-width: 320px) {
+    #timers-page #new-timer .form-group, #timers-page #new-manual-timer .form-group {
+      width: 100%;
+      margin-right: 0; }
+      #timers-page #new-timer .form-group button, #timers-page #new-manual-timer .form-group button {
+        width: 100%; }
+    #timers-page #new-timer select, #timers-page #new-manual-timer select {
+      max-width: inherit; } }
+
+#activities td {
+  text-align: right; }
+
+#activities #new-activity {
+  max-width: 400px;
+  margin: auto; }
+  #activities #new-activity button {
+    width: 100%; }
+  @media (max-width: 320px) {
+    #activities #new-activity .form-group {
+      width: 100%; } }
+
+#activities .activity {
+  cursor: pointer; }
+  #activities .activity .activity-column {
+    text-align: left; }
+    @media (max-width: 320px) {
+      #activities .activity .activity-column {
+        max-width: 80px;
+        overflow: scroll; } }
+
 /*# sourceMappingURL=style.css.map */

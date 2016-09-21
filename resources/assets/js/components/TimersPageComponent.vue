@@ -11,6 +11,17 @@
             </input-group>
         </div>
 
+        <!--Activites with durations for the day-->
+        <div id="activities-with-durations-for-day">
+            <span
+                v-for="activity in shared.activitiesWithDurationsForTheDay | filterBy activitiesFilter in 'name'"
+                v-bind:style="{'background': activity.color}"
+                class="label label-default"
+            >
+                {{ activity.name }} {{ activity.totalMinutesForDay | formatDuration }}
+            </span>
+        </div>
+
         <date-navigation
             :date.sync="date"
         >
@@ -29,19 +40,10 @@
         >
         </router-view>
 
-        <!--Activites with durations for the day-->
-        <div id="activities-with-durations-for-day">
-    <span
-        v-for="activity in shared.activitiesWithDurationsForTheDay | filterBy activitiesFilter in 'name'"
-        v-bind:style="{'background': activity.color}"
-        class="label label-default">
-        {{ activity.name }} {{ activity.totalMinutesForDay | formatDuration }}</span>
-        </div>
-
         <div id="activities-and-timers-container">
             <!--Timers-->
-            <h2>Timers</h2>
             <div id="timers">
+                <h2>Timers</h2>
                 <table class="table table-bordered" v-if="timers.length > 0">
 
                     <thead>
@@ -93,9 +95,8 @@
             </div>
 
             <!--Activites with durations for the week-->
-            <h2>Activities</h2>
             <div id="activities-with-durations-for-week">
-
+                <h2>Activities</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

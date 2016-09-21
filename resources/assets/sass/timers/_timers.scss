@@ -4,8 +4,13 @@
 }
 
 #timers-page {
-    > * {
-        margin-bottom: 20px;
+    #activities-with-durations-for-day {
+        display: flex;
+        justify-content: center;
+        .label {
+            margin-right: 5px;
+            font-size: 14px;
+        }
     }
     #activities-and-timers-container {
         display: flex;
