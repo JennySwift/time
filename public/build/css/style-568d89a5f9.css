@@ -36,6 +36,10 @@ body {
       -ms-flex-align: center;
       align-items: center; }
 
+th {
+  background: #5bc0de;
+  color: white; }
+
 h1, h2, h3, h4, h5 {
   text-align: center; }
 
@@ -236,7 +240,7 @@ li {
   top: 0;
   width: 100%;
   color: #888;
-  background: black;
+  background: #5bc0de;
   padding: 0;
   margin: 0; }
   @media (max-width: 320px) {
@@ -258,7 +262,8 @@ li {
     #navbar > li > a {
       transition: all .5s ease; }
   #navbar a {
-    color: #337ab7; }
+    color: white;
+    font-weight: bold; }
   #navbar .gravatar-li .gravatar-container {
     margin-left: 5px;
     display: -ms-flexbox;
