@@ -40,7 +40,7 @@ thead {
   background: #43cea2;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #43cea2, #185a9d);
+  background: linear-gradient(to left, #ffb347, #ffcc33);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   background-attachment: fixed; }
@@ -138,9 +138,9 @@ li {
   color: #d9534f; }
 
 .btn-success {
-  background: #43cea2; }
+  background: #ffb347; }
   .btn-success:hover {
-    background: #2eb087; }
+    background: #ff9e14; }
 
 .vertical-center {
   display: -ms-flexbox;
@@ -253,7 +253,7 @@ li {
   background: #43cea2;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #43cea2, #185a9d);
+  background: linear-gradient(to left, #ffb347, #ffcc33);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   padding: 0;
@@ -265,7 +265,7 @@ li {
     min-width: inherit; }
     #navbar .dropdown-menu a {
       padding: 0 8px;
-      color: #185a9d; }
+      color: #ffcc33; }
   #navbar > li {
     display: -ms-flexbox;
     display: flex;
