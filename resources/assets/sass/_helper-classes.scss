@@ -15,15 +15,15 @@
     color: $danger;
 }
 
-.btn-success {
-	background: $base2;
-	border-color: $base1;
-	&:hover {
-		background: $base1;
-		border-color: $base2;
-		//background: darken($base1, 10%);
-	}
-}
+//.btn-success {
+//	background: $base2;
+//	border-color: $base1;
+//	&:hover {
+//		background: $base1;
+//		border-color: $base2;
+//		//background: darken($base1, 10%);
+//	}
+//}
 
 .btn-danger {
 	background: $danger1;

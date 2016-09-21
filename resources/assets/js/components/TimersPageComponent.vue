@@ -28,7 +28,7 @@
         </date-navigation>
 
         <new-timer></new-timer>
-        
+
         <div id="activities-and-timers-container">
             <!--Timers-->
             <div id="timers">

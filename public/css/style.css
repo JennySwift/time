@@ -155,13 +155,6 @@ li {
   cursor: pointer;
   color: #d9534f; }
 
-.btn-success {
-  background: #ffcc33;
-  border-color: #ffb347; }
-  .btn-success:hover {
-    background: #ffb347;
-    border-color: #ffcc33; }
-
 .btn-danger {
   background: #FF753A;
   border-color: #ff5107; }
@@ -764,27 +757,9 @@ label.input-group-addon {
   #timers-page #timer-in-progress button {
     width: 100%; }
 
-#timers-page #new-timer, #timers-page #new-manual-timer {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
-  #timers-page #new-timer > *, #timers-page #new-manual-timer > * {
-    margin-right: 5px; }
-  #timers-page #new-timer select, #timers-page #new-manual-timer select {
-    max-width: 400px; }
-  @media (max-width: 320px) {
-    #timers-page #new-timer .form-group, #timers-page #new-manual-timer .form-group {
-      width: 100%;
-      margin-right: 0; }
-      #timers-page #new-timer .form-group button, #timers-page #new-manual-timer .form-group button {
-        width: 100%; }
-    #timers-page #new-timer select, #timers-page #new-manual-timer select {
-      max-width: inherit; } }
+#timers-page #new-timer button {
+  width: 100%;
+  margin-top: 10px; }
 
 #activities td {
   text-align: right; }

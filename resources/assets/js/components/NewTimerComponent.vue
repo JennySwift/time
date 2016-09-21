@@ -2,22 +2,16 @@
     <div>
 
         <div v-show="!timerInProgress" id="new-timer">
-            <div class="form-group">
-                <label for="activity">Activity</label>
 
-                <select
-                    v-model="newTimer.activity.id"
-                    id="new-timer-activity"
-                    class="form-control"
-                >
-                    <option
-                        v-for="activity in activities"
-                        v-bind:value="activity.id"
-                    >
-                        {{ activity.name }}
-                    </option>
-                </select>
-            </div>
+            <input-group
+                label="Activity:"
+                :model.sync="newTimer.activity"
+                :enter="startTimer"
+                id="new-timer-activity"
+                :options="shared.activities"
+                options-prop="name"
+            >
+            </input-group>
 
             <div class="form-group">
                 <button v-on:click="startTimer()" class="btn btn-success">Start</button>
@@ -46,14 +40,6 @@
                 shared: store.state,
                 time: ''
             };
-        },
-        computed: {
-            activities: function () {
-                return this.shared.activities;
-            },
-            timers: function () {
-                return this.shared.timers;
-            }
         },
         components: {},
         filters: {
@@ -107,7 +93,7 @@
              *
              */
             setDefaultActivity: function () {
-                this.newTimer.activity = this.activities[0];
+                this.newTimer.activity = this.shared.activities[0];
             },
 
             /**
