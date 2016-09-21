@@ -36,6 +36,7 @@
 
         <div id="activities-and-timers-container">
             <!--Timers-->
+            <h2>Timers</h2>
             <div id="timers">
                 <table class="table table-bordered" v-if="timers.length > 0">
 
@@ -88,6 +89,7 @@
             </div>
 
             <!--Activites with durations for the week-->
+            <h2>Activities</h2>
             <div id="activities-with-durations-for-week">
 
                 <table class="table table-bordered">
