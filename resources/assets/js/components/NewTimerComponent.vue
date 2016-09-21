@@ -3,15 +3,17 @@
 
         <div v-show="!timerInProgress" id="new-timer">
 
-            <input-group
-                label="Activity:"
-                :model.sync="newTimer.activity"
-                :enter="startTimer"
-                id="new-timer-activity"
-                :options="shared.activities"
-                options-prop="name"
-            >
-            </input-group>
+            <div class="input-group-container">
+                <input-group
+                    label="Activity:"
+                    :model.sync="newTimer.activity"
+                    :enter="startTimer"
+                    id="new-timer-activity"
+                    :options="shared.activities"
+                    options-prop="name"
+                >
+                </input-group>
+            </div>
 
             <div class="form-group">
                 <button v-on:click="startTimer()" class="btn btn-success">Start</button>

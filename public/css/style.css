@@ -578,6 +578,12 @@ li {
 
 .input-group-container {
   margin-bottom: 7px; }
+  .input-group-container .input-group:not(:first-child) input {
+    border-top: none; }
+    .input-group-container .input-group:not(:first-child) input:focus {
+      border: 1px solid #66afe9; }
+  .input-group-container .input-group input {
+    border-radius: 0; }
 
 label.input-group-addon {
   min-width: 135px;
@@ -759,7 +765,7 @@ label.input-group-addon {
 
 #timers-page #new-timer button {
   width: 100%;
-  margin-top: 10px; }
+  margin-top: 5px; }
 
 #activities td {
   text-align: right; }
