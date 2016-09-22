@@ -7,8 +7,9 @@
     #activities-with-durations-for-day {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         .label {
-            margin-right: 5px;
+            margin: 0 5px 3px 0;
             //font-size: 14px;
         }
     }

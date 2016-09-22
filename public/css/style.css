@@ -5859,8 +5859,7 @@ li {
 
 @media (max-width: 600px) {
   h1 {
-    font-size: 20px;
-    margin: 2px 2px; } }
+    font-size: 27px; } }
 
 #home-container, #home-row {
   height: 100%; }
@@ -6461,9 +6460,11 @@ label.input-group-addon {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
   #timers-page #activities-with-durations-for-day .label {
-    margin-right: 5px; }
+    margin: 0 5px 3px 0; }
 
 #timers-page #activities-and-timers-container {
   display: -ms-flexbox;
