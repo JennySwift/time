@@ -83,8 +83,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     /**
      *
      * @param $timer
+     * @param null $onlyBasicKeys
      */
-    protected function checkTimerKeysExist($timer, $onlyBasicKeys)
+    protected function checkTimerKeysExist($timer, $onlyBasicKeys = null)
     {
         $this->assertArrayHasKey('id', $timer);
         $this->assertArrayHasKey('start', $timer);
@@ -94,7 +95,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->assertArrayHasKey('minutes', $timer);
         $this->assertArrayHasKey('activity', $timer);
 
-        if (!$onlyBasicKeys) {
+        if (!isset($onlyBasicKeys)) {
             $this->assertArrayHasKey('durationInMinutesForDay', $timer);
         }
 
