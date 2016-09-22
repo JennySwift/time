@@ -82,7 +82,8 @@
         watch: {
             'shared.date.typed': function (newValue, oldValue) {
                 $("#date").val(this.shared.date.typed);
-                $.event.trigger('date-changed');
+                store.getTimers();
+                store.getTotalMinutes();
             }
         },
         methods: {

@@ -79,7 +79,7 @@
                     redirectTo: this.redirectTo,
                     callback: function () {
                         store.addTimer(response.data, true);
-                        $.event.trigger('manual-timer-created');
+                        store.getTotalMinutes();
                     }.bind(this)
                 });
             },

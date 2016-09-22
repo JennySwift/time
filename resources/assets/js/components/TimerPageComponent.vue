@@ -65,7 +65,6 @@
 
                 helpers.put('/api/timers/' + this.timer.id, data, 'Timer updated', function (response) {
                     store.update(response.data, 'timers');
-                    this.showPopup = false;
                 }.bind(this));
             },
 
@@ -75,8 +74,7 @@
             deleteTimer: function () {
                 helpers.delete('/api/timers/' + this.timer.id, 'Timer deleted', function (response) {
                     store.delete(this.timer, 'timers');
-                    $.event.trigger('timer-deleted', [this.timer]);
-                    this.showPopup = false;
+                    store.getTotalMinutes();
                 }.bind(this));
             }
         }

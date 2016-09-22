@@ -16,7 +16,7 @@ var VueResource = require('vue-resource');
 Vue.use(VueResource);
 require('./config.js');
 global.helpers = require('./repositories/Helpers');
-global.filters = require('./repositories/FiltersRepository');
+global.filters = require('./repositories/Filters');
 Date.setLocale('en-AU');
 
 //Shared components
@@ -33,6 +33,9 @@ Vue.component('checkbox-group', require('./components/shared/CheckboxGroupCompon
 
 //Components
 Vue.component('new-timer', require('./components/NewTimerComponent.vue'));
+
+//Filters
+// Vue.filter('format-duration', require('./filters/FormatDurationFilter.js'));
 
 //Transitions
 Vue.transition('fade', require('./transitions/FadeTransition'));

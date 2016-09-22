@@ -198,37 +198,7 @@
              */
             formatMinutes: function (minutes) {
                 return minutes * 10;
-            },
-
-            /**
-             *
-             */
-            listen: function () {
-                var that = this;
-                $(document).on('date-changed', function (event) {
-                    store.getTimers(that);
-                    store.getTotalMinutesForActivitiesForTheDay();
-                    store.getTotalMinutesForActivitiesForTheWeek();
-                });
-
-                $(document).on('timer-deleted', function (event, timer) {
-                    store.getTotalMinutesForActivitiesForTheDay();
-                    store.getTotalMinutesForActivitiesForTheWeek();
-                });
-
-                $(document).on('timer-stopped', function (event) {
-                    store.getTotalMinutesForActivitiesForTheDay();
-                    store.getTotalMinutesForActivitiesForTheWeek();
-                });
-
-                $(document).on('manual-timer-created', function (event) {
-                    store.getTotalMinutesForActivitiesForTheDay();
-                    store.getTotalMinutesForActivitiesForTheWeek();
-                });
             }
-        },
-        ready: function () {
-            this.listen();
         }
     };
 </script>

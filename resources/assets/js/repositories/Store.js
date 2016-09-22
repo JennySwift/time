@@ -108,6 +108,14 @@ module.exports = {
     /**
      *
      */
+    getTotalMinutes: function () {
+        this.getTotalMinutesForActivitiesForTheDay();
+        this.getTotalMinutesForActivitiesForTheWeek();
+    },
+
+    /**
+     *
+     */
     getTotalMinutesForActivitiesForTheDay: function () {
         helpers.get({
             url: '/api/activities/getTotalMinutesForDay?date=' + this.state.date.sql,
