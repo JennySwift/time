@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Models\Relationships\OwnedByUser;
+use App\Traits\OwnedByUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 

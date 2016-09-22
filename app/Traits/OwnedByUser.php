@@ -1,4 +1,4 @@
-<?php  namespace App\Traits\Models\Relationships;
+<?php  namespace App\Traits;
 
 use Auth;
 

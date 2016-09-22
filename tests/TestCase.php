@@ -1,9 +1,12 @@
 <?php
 
 use App\User;
+use Testing\Traits\Requests;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
+    use Requests;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -69,9 +72,19 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     /**
      *
+     * @param $response
+     * @return mixed
+     */
+    public function getContent($response)
+    {
+        return json_decode($response->getContent(), true);
+    }
+
+    /**
+     *
      * @param $timer
      */
-    protected function checkTimerKeysExist($timer)
+    protected function checkTimerKeysExist($timer, $onlyBasicKeys)
     {
         $this->assertArrayHasKey('id', $timer);
         $this->assertArrayHasKey('start', $timer);
@@ -80,6 +93,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->assertArrayHasKey('hours', $timer);
         $this->assertArrayHasKey('minutes', $timer);
         $this->assertArrayHasKey('activity', $timer);
-        $this->assertArrayHasKey('durationInMinutesForDay', $timer);
+
+        if (!$onlyBasicKeys) {
+            $this->assertArrayHasKey('durationInMinutesForDay', $timer);
+        }
+
     }
 }

@@ -52,6 +52,17 @@ class TimersController extends Controller
     }
 
     /**
+     * GET /api/timers/{timers}
+     * @param Request $request
+     * @param Timer $timer
+     * @return Response
+     */
+    public function show(Request $request, Timer $timer)
+    {
+        return $this->respond($timer, new TimerTransformer, 200);
+    }
+
+    /**
      *
      * @param Request $request
      * @return Response

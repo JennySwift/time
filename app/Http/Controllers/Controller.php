@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -12,6 +13,8 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\TransformerAbstract;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+
 
 class Controller extends BaseController
 {
@@ -26,6 +29,27 @@ class Controller extends BaseController
     function createItem($model, TransformerAbstract $transformer, $key = null)
     {
         return new Item($model, $transformer, $key);
+    }
+
+    /**
+     *
+     * @param $resource
+     * @param TransformerAbstract $transformer
+     * @param $responseCode
+     * @param array|null $includes
+     * @param Request $request
+     * @return Response
+     */
+    public function respond($resource, TransformerAbstract $transformer, $responseCode, array $includes = null, Request $request = null)
+    {
+        if ($resource instanceof EloquentCollection) {
+            $resource = $this->transform($this->createCollection($resource, $transformer), $includes, $request)['data'];
+        }
+        else {
+            $resource = $this->transform($this->createItem($resource, $transformer), $includes, $request)['data'];
+        }
+
+        return response($resource, $responseCode);
     }
 
     /**

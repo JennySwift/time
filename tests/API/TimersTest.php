@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\Timer;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 
@@ -40,6 +41,26 @@ class TimersTest extends TestCase
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
 
         DB::rollBack();
+    }
+    
+    /**
+     * @test
+     */
+    public function it_can_show_a_timer()
+    {
+        $this->logInUser();
+    
+        $timer = Timer::forCurrentUser()->first();
+    
+        $response = $this->call('GET', '/api/timers/' . $timer->id);
+        $content = $this->getContent($response);
+        //dd($content);
+
+        $this->checkTimerKeysExist($content, true);
+    
+        $this->assertEquals(1, $content['id']);
+    
+        $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
     }
 
 }
