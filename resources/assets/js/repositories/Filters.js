@@ -2,20 +2,7 @@ var moment = require('moment');
 
 module.exports = {
 
-    /**
-     *
-     * @param number
-     * @param howManyDecimals
-     * @returns {number}
-     */
-    roundNumber: function (number, howManyDecimals) {
-        if (!howManyDecimals) {
-            return Math.round(number);
-        }
 
-        var multiplyAndDivideBy = Math.pow(10, howManyDecimals);
-        return Math.round(number * multiplyAndDivideBy) / multiplyAndDivideBy;
-    },
 
     /**
      *
