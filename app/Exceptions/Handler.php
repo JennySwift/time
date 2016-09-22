@@ -52,40 +52,42 @@ class Handler extends ExceptionHandler
             $model = (new \ReflectionClass($e->getModel()))->getShortName();
 
             return response([
-                'error' => "{$model} not found.",
-                'status' => Response::HTTP_NOT_FOUND
+                'error' => "{$model} not found."
             ], Response::HTTP_NOT_FOUND);
         }
 
         else if ($e instanceof \InvalidArgumentException) {
             return response([
-                'error' => $e->getMessage(),
-                'status' => Response::HTTP_BAD_REQUEST
+                'error' => $e->getMessage()
             ], Response::HTTP_BAD_REQUEST);
+        }
+
+        else if ($e instanceof NotFoundHttpException) {
+            return response([
+                'error' => 'Not found'
+            ], Response::HTTP_NOT_FOUND);
         }
 
         else if ($e instanceof HttpResponseException) {
             if ($e->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN) {
                 return response([
-                    'error' => 'Forbidden',
-                    'status' => Response::HTTP_FORBIDDEN
+                    'error' => 'Forbidden'
                 ], Response::HTTP_FORBIDDEN);
             }
         }
 
-        else if ($e instanceof NotFoundHttpException) {
-            return response([
-                'error' => 'Not found',
-                'status' => Response::HTTP_NOT_FOUND
-            ], Response::HTTP_NOT_FOUND);
-        }
+//        else if ($e instanceof GeneralException) {
+//            return response([
+//                'error' => $e->errorMessage
+//            ], Response::HTTP_BAD_REQUEST);
+//        }
 
-        else if ($e instanceof Exception) {
+        //Let Laravel take care of validation exceptions
+        else if ($e instanceof Exception && !$e instanceof ValidationException) {
             if (!method_exists($e, 'getResponse') || !$e->getResponse()->getContent()) {
                 if ($e->getCode() > 0) {
                     return response([
-                        'error' => $e->getMessage(),
-                        'status' => $e->getCode()
+                        'error' => $e->getMessage()
                     ], $e->getCode());
                 }
             }
@@ -94,18 +96,11 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        else {
+        else if (!$e instanceof ValidationException) {
             return response([
                 'error' => 'There was an error'
             ], 422);
         }
-
-//        if ($e instanceof GeneralException) {
-//            return response([
-//                'error' => $e->errorMessage,
-//                'status' => Response::HTTP_BAD_REQUEST
-//            ], Response::HTTP_BAD_REQUEST);
-//        }
 
         return parent::render($request, $e);
     }

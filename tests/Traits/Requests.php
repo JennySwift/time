@@ -111,7 +111,7 @@ trait Requests
     {
         $response = $this->call('GET', $url);
         $content = $this->getContent($response);
-        //dd($content);
+//        dd($content);
 
         $this->assertArrayHasKey('error', $content);
         $this->assertContains('Unauthorised', $content['error']);
