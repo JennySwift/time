@@ -11,6 +11,7 @@
     "@jennyswift/vue-autocomplete": "^0.1.2",
     "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
     "gulp": "^3.9.0",
     "jquery": "^3.1.0",
     "moment": "^2.13.0",
