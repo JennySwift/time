@@ -21,7 +21,7 @@
             :model.sync="timer.activity.data"
             :enter="updateTimer"
             id="timer-activity"
-            :options="activities"
+            :options="shared.activities"
             options-prop="name"
         >
         </input-group>
@@ -52,30 +52,41 @@
         methods: {
 
             /**
-             *
-             */
+            *
+            */
             updateTimer: function () {
-                $.event.trigger('show-loading');
-
                 var data = {
                     start: this.timer.start,
                     finish: this.timer.finish,
                     activity_id: this.timer.activity.data.id
                 };
 
-                helpers.put('/api/timers/' + this.timer.id, data, 'Timer updated', function (response) {
-                    store.update(response.data, 'timers');
-                }.bind(this));
+                helpers.put({
+                    url: '/api/timers/' + this.timer.id,
+                    data: data,
+                    property: 'timers',
+                    message: 'Timer updated',
+                    redirectTo: this.redirectTo,
+                    callback: function (response) {
+
+                    }.bind(this)
+                });
             },
 
             /**
-             *
-             */
+            *
+            */
             deleteTimer: function () {
-                helpers.delete('/api/timers/' + this.timer.id, 'Timer deleted', function (response) {
-                    store.delete(this.timer, 'timers');
-                    store.getTotalMinutes();
-                }.bind(this));
+                helpers.delete({
+                    url: '/api/timers/' + this.timer.id,
+                    array: 'timers',
+                    itemToDelete: this.timer,
+                    message: 'Timer deleted',
+                    redirectTo: this.redirectTo,
+                    callback: function () {
+                        store.getTotalMinutes();
+                    }.bind(this)
+                });
             }
         }
     };
