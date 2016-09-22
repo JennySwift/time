@@ -103,6 +103,7 @@ module.exports = {
             //Only add the timer if the date is on today or the timer is a manual entry
             store.state.timers.push(timer);
         }
+        store.getTotalMinutes();
     },
 
     /**

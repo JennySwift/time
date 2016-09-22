@@ -77,9 +77,8 @@
                     data: data,
                     message: 'Timer created',
                     redirectTo: this.redirectTo,
-                    callback: function () {
-                        store.addTimer(response.data, true);
-                        store.getTotalMinutes();
+                    callback: function (response) {
+                        store.addTimer(response, true);
                     }.bind(this)
                 });
             },

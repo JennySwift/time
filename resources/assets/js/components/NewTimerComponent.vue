@@ -87,7 +87,6 @@
                     callback: function (response) {
                         this.timerInProgress = false;
                         store.addTimer(response);
-                        store.getTotalMinutes();
                     }.bind(this)
                 });
             },
