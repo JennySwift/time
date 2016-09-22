@@ -6468,10 +6468,15 @@ label.input-group-addon {
 #timers-page #activities-and-timers-container {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-right: -20px; }
+  #timers-page #activities-and-timers-container #timers, #timers-page #activities-and-timers-container #activities-with-durations-for-week {
+    margin-right: 20px;
+    -ms-flex-positive: 1;
+    flex-grow: 1; }
   #timers-page #activities-and-timers-container table td, #timers-page #activities-and-timers-container table th {
     padding: 7px 5px;
     margin: 0; }
