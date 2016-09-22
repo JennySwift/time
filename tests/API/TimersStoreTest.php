@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\Timer;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 
@@ -52,9 +53,8 @@ class TimersStoreTest extends TestCase
      * @test
      * @return void
      */
-    public function it_can_start_a_timer()
+    public function it_can_start_a_timer_then_stop_it()
     {
-        DB::beginTransaction();
         $this->logInUser();
 
         $timer = [
@@ -76,7 +76,28 @@ class TimersStoreTest extends TestCase
 
         $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
 
-        DB::rollBack();
+        $this->stopTimer(Timer::find($content['id']));
+    }
+
+    /**
+     *
+     * @param $timer
+     */
+    private function stopTimer($timer)
+    {
+        $response = $this->call('PUT', '/api/timers/'.$timer->id, [
+            'finish' => '2015-12-01 21:00:01'
+        ]);
+        $content = json_decode($response->getContent(), true);
+//        dd($content);
+
+        $this->checkTimerKeysExist($content);
+
+        $this->assertEquals('2015-12-01 21:00:01', $content['finish']);
+        $this->assertEquals('2015-12-01 21:00:00', $content['start']);
+        $this->assertEquals(2, $content['activity']['data']['id']);
+
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**

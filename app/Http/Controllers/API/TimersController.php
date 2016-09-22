@@ -87,7 +87,7 @@ class TimersController extends Controller
      */
     public function update(Request $request, Timer $timer)
     {
-        // Create an array with the new fields merged
+        //Create an array with the new fields merged
         $data = array_compare($timer->toArray(), $request->only([
             'start',
             'finish'
@@ -99,8 +99,6 @@ class TimersController extends Controller
             $timer->activity()->associate(Activity::findOrFail($request->get('activity_id')));
             $timer->save();
         }
-
-//        dd($timer);
 
         $finishDate = $this->calculateFinishDate($timer);
 
