@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Timer extends Model
 {
-    use OwnedByUser;
+    use OwnedByUser, OnDate;
 
     /**
      * @var string
@@ -41,23 +41,6 @@ class Timer extends Model
     public function activity()
     {
         return $this->belongsTo('App\Models\Activity');
-    }
-
-    /**
-     *
-     * @param $query
-     * @param $dateString
-     * @return mixed
-     */
-    public function scopeOnDate($query, $dateString)
-    {
-        $dateString = $dateString . '%';
-
-        return $query->where(function ($q) use ($dateString) {
-            $q->where('finish', 'LIKE', $dateString)
-                ->orWhere('start', 'LIKE', $dateString);
-        })
-            ->whereNotNull('finish');
     }
 
     /**
