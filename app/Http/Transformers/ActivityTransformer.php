@@ -47,10 +47,7 @@ class ActivityTransformer extends TransformerAbstract
             $date = $this->params['date'];
 
             if (isset($this->params['forWeek'])) {
-                $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
-                $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
-
-                $totalMinutesForWeek = $activity->getTotalMinutesForWeek($startOfWeek, $endOfWeek);
+                $totalMinutesForWeek = $activity->getTotalMinutesForWeek($date);
 
 //                $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
                 $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date);

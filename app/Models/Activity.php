@@ -84,8 +84,11 @@ class Activity extends Model
      * @param Carbon $endOfWeek
      * @return int
      */
-    public function getTotalMinutesForWeek(Carbon $startOfWeek, Carbon $endOfWeek)
+    public function getTotalMinutesForWeek($date)
     {
+        $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
+        $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
+
         $total = 0;
         $day = $endOfWeek->copy();
 
@@ -113,7 +116,7 @@ class Activity extends Model
 
         }
         else {
-            return round($this->totalMinutesForWeek / 7);
+            return round($this->getTotalMinutesForWeek($date->format('Y-m-d')) / 7);
         }
 
     }

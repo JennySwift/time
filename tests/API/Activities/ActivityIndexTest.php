@@ -61,10 +61,9 @@ class ActivityIndexTest extends TestCase
         $this->assertEquals(0, $content[2]['week']['minutes']);
         $this->assertEquals(130, $content[2]['duration']['totalMinutes']);
 
-        //Todo
-//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['totalMinutes']);
-//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['hours']);
-//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['minutes']);
+        $this->assertEquals(17, $content[2]['week']['dailyAverage']['totalMinutes']);
+        $this->assertEquals(0, $content[2]['week']['dailyAverage']['hours']);
+        $this->assertEquals(17, $content[2]['week']['dailyAverage']['minutes']);
 
 //        $this->assertEquals('untracked', $content[2]['name']);
 //        $this->assertEquals(7980, $content[2]['totalMinutesForWeek']);
