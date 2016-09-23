@@ -11,7 +11,6 @@
         <button
             v-if="destroy"
             v-on:click="destroy()"
-            v-link="{path: redirectTo}"
             class="btn btn-danger"
         >
             Delete
