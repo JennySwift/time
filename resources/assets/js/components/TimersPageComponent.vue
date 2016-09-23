@@ -78,7 +78,9 @@
                     <tbody>
                         <tr
                             v-for="activity in shared.activitiesWithDurationsForTheWeek
-                                | filterBy activitiesFilter in 'name'"
+                                | filterBy activitiesFilter in 'name'
+                                | orderBy orderActivities
+                            "
                         >
                             <td class="activity">
                                 <span
@@ -134,6 +136,10 @@
             'timer': require('./TimerComponent.vue')
         },
         methods: {
+            orderActivities: function (a, b) {
+                return a.week.hours < b.week.hours && a.week.minutes < b.week.minutes;
+            },
+
             /**
              *
              * @param minutes
