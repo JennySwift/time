@@ -106,4 +106,19 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         }
 
     }
+
+    /**
+     *
+     * @param $activity
+     */
+    protected function checkActivityKeysExist($activity)
+    {
+        $this->assertArrayHasKey('id', $activity);
+        $this->assertArrayHasKey('name', $activity);
+
+        $this->assertArrayHasKey('duration', $activity);
+        $this->assertArrayHasKey('totalMinutes', $activity['duration']);
+        $this->assertArrayHasKey('hours', $activity['duration']);
+        $this->assertArrayHasKey('minutes', $activity['duration']);
+    }
 }

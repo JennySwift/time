@@ -16,11 +16,18 @@ class ActivityTransformer extends TransformerAbstract
      */
     public function transform(Activity $activity)
     {
+        $totalMinutes = $activity->totalMinutesForAllTime();
+
         $array = [
             'id' => $activity->id,
             'name' => $activity->name,
-            'totalMinutes' => $activity->totalMinutesForAllTime(),
             'color' => $activity->color,
+
+            'duration' => [
+                'totalMinutes' => $totalMinutes,
+                'hours' => floor($totalMinutes / 60),
+                'minutes' => $totalMinutes % 60
+            ]
         ];
 
         return $array;

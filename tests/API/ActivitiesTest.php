@@ -23,13 +23,17 @@ class ActivitiesTest extends TestCase
         $content = json_decode($response->getContent(), true);
 //      dd($content);
 
-        $this->assertArrayHasKey('id', $content[0]);
-        $this->assertArrayHasKey('name', $content[0]);
-        $this->assertArrayHasKey('totalMinutes', $content[0]);
+        $this->checkActivityKeysExist($content[0]);
 
         $this->assertEquals('sleep', $content[0]['name']);
-        $this->assertEquals(3900, $content[0]['totalMinutes']);
-        $this->assertEquals(300, $content[1]['totalMinutes']);
+
+        $this->assertEquals(3900, $content[0]['duration']['totalMinutes']);
+        $this->assertEquals(65, $content[0]['duration']['hours']);
+        $this->assertEquals(0, $content[0]['duration']['minutes']);
+
+        $this->assertEquals(300, $content[1]['duration']['totalMinutes']);
+        $this->assertEquals(5, $content[1]['duration']['hours']);
+        $this->assertEquals(0, $content[1]['duration']['minutes']);
 
         $this->assertEquals(200, $response->getStatusCode());
     }
