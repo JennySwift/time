@@ -42,10 +42,10 @@ class Activity extends Model
     }
 
     /**
-     *
+     * Get total minutes on an activity for all time
      * @return int
      */
-    public function totalMinutesForAllTime()
+    public function getTotalMinutesAttribute()
     {
         $total = 0;
         foreach ($this->timers()->get() as $timer) {
@@ -54,7 +54,7 @@ class Activity extends Model
             }
         }
 
-        return $this->totalMinutesForAllTime = $total;
+        return $total;
     }
 
     /**

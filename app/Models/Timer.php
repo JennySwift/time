@@ -88,7 +88,7 @@ class Timer extends Model
 
     /**
      *
-     * @return static
+     * @return bool|static
      */
     public function getFinish()
     {
