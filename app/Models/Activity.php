@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\OnDate;
 use App\Traits\OwnedByUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Activity extends Model
 {
-    use OwnedByUser;
+    use OwnedByUser, OnDate;
     /**
      * @var string
      */
@@ -118,22 +119,16 @@ class Activity extends Model
     }
 
     /**
-     * 
+     *
      * @param $query
      * @param $dateString
      * @return mixed
      */
     public function scopeOnDate($query, $dateString)
     {
-        $dateString = $dateString . '%';
-
         return $query->whereHas('timers', function ($q) use ($dateString)
         {
-            $q->where(function ($q) use ($dateString)
-            {
-                $q->where('finish', 'LIKE', $dateString)
-                    ->orWhere('start', 'LIKE', $dateString);
-            })->whereNotNull('finish');
+            $q->onDate($dateString);
         });
 
     }

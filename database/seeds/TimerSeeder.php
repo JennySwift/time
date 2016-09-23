@@ -36,6 +36,8 @@ class TimerSeeder extends Seeder
 
                 $this->createTimer('work', $this->date->copy()->hour(13), $this->date->copy()->hour(14));
             }
+
+            $this->createTimer('reading', Carbon::yesterday()->hour(8)->minute(30), Carbon::yesterday()->hour(8)->minute(40));
         }
 
     }

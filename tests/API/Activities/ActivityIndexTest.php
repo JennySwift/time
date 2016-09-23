@@ -86,6 +86,8 @@ class ActivityIndexTest extends TestCase
 
         $this->checkActivityKeysExist($content[0], false, true);
 
+        $this->assertCount(2, $content);
+
         $this->assertEquals('sleep', $content[0]['name']);
         $this->assertEquals(735, $content[0]['day']['totalMinutes']);
         $this->assertEquals(12, $content[0]['day']['hours']);
