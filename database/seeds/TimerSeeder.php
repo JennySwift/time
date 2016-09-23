@@ -29,66 +29,32 @@ class TimerSeeder extends Seeder
              * Create entries for the last 5 days.
              */
             foreach (range(0, 4) as $index) {
-                $this->createDaySleep($index, $index * 15);
-                $this->createNightSleep($index, $index * 15);
-                $this->createWorkEntry($index);
+                $this->date = Carbon::today()->subDays($index);
+
+                $this->createTimer('sleep', $this->date->copy()->hour(16), $this->date->copy()->hour(17)->minute($index * 15));
+                $this->createTimer('sleep', $this->date->copy()->hour(21), $this->date->copy()->addDays(1)->hour(8)->minute($index * 15));
+
+                $this->createTimer('work', $this->date->copy()->hour(13), $this->date->copy()->hour(14));
             }
         }
 
     }
 
     /**
-     *
-     * @param $index
-     */
-    private function createWorkEntry($index)
-    {
-        $today = Carbon::today();
-        $this->date = $today->subDays($index);
-
-        $entry = new Timer([
-            'start' => $this->date->hour(13)->format('Y-m-d H:i:s'),
-            'finish' => $this->date->hour(14)->format('Y-m-d H:i:s')
-        ]);
-
-        $entry->user()->associate($this->user);
-        $entry->activity()->associate(Activity::where('name', 'work')->where('user_id', $this->user->id)->first());
-        $entry->save();
-    }
-
-    /**
      * Create a night's sleep
+     * @param $activityName
+     * @param Carbon $start
+     * @param Carbon $finish
      */
-    private function createNightSleep($index, $finishMinutes)
+    private function createTimer($activityName, Carbon $start, Carbon $finish)
     {
-        $today = Carbon::today();
-        $this->date = $today->subDays($index);
-
         $entry = new Timer([
-            'start' => $this->date->hour(21)->format('Y-m-d H:i:s'),
-            'finish' => $this->date->addDays(1)->hour(8)->minute($finishMinutes)->format('Y-m-d H:i:s')
+            'start' => $start->format('Y-m-d H:i:s'),
+            'finish' => $finish->format('Y-m-d H:i:s')
         ]);
 
         $entry->user()->associate($this->user);
-        $entry->activity()->associate(Activity::where('name', 'sleep')->where('user_id', $this->user->id)->first());
-        $entry->save();
-    }
-
-    /**
-     * Create a day's sleep
-     */
-    private function createDaySleep($index, $finishMinutes)
-    {
-        $today = Carbon::today();
-        $this->date = $today->subDays($index);
-
-        $entry = new Timer([
-            'start' => $this->date->hour(16)->format('Y-m-d H:i:s'),
-            'finish' => $this->date->hour(17)->minute($finishMinutes)->format('Y-m-d H:i:s')
-        ]);
-
-        $entry->user()->associate($this->user);
-        $entry->activity()->associate(Activity::where('name', 'sleep')->where('user_id', $this->user->id)->first());
+        $entry->activity()->associate(Activity::where('name', $activityName)->where('user_id', $this->user->id)->first());
         $entry->save();
     }
 
