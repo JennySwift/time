@@ -15,7 +15,7 @@
                 <tr v-for="activity in shared.activities" v-link="{path: '/activities/' + activity.id}" v-on:click="selectActivity(activity)" class="activity pointer">
                     <td class="activity-column"><span v-bind:style="{'background': activity.color}" class="label label-default">{{ activity.name }}</span></td>
                     <td>{{ activity.color }}</td>
-                    <td>{{ activity.totalMinutes | formatDuration }}</td>
+                    <td>{{ activity.totalMinutes | formatDurationFromMinutes }}</td>
                 </tr>
             </tbody>
 
@@ -36,8 +36,8 @@
         },
         components: {},
         filters: {
-            formatDuration: function (minutes) {
-                return helpers.formatDuration(minutes);
+            formatDurationFromMinutes: function (minutes) {
+                return helpers.formatDurationFromMinutes(minutes);
             }
         },
         methods: {

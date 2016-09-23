@@ -9,22 +9,28 @@ module.exports = {
      * @param minutes
      * @returns {*}
      */
-    formatDuration: function (minutes) {
+    formatDurationFromMinutes: function (minutes) {
         if (!minutes && minutes != 0) {
             return '-';
         }
 
         var hours = Math.floor(minutes / 60);
-        if (hours < 10) {
-            hours = '0' + hours;
-        }
-
         minutes = minutes % 60;
-        if (minutes < 10) {
-            minutes = '0' + minutes;
-        }
 
-        return hours + ':' + minutes;
+        return helpers.addZeros(hours) + ':' + helpers.addZeros(minutes);
+    },
+
+    /**
+     *
+     * @param seconds
+     * @returns {string}
+     */
+    formatDurationFromSeconds: function (seconds) {
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor(seconds / 60) % 60;
+        seconds = seconds % 60;
+
+        return helpers.addZeros(hours) + ':' + helpers.addZeros(minutes) + ':' + helpers.addZeros(seconds);
     },
 
     /**
@@ -48,19 +54,6 @@ module.exports = {
                 seconds: moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('ss')
             };
         }
-    },
-
-    /**
-     *
-     * @param seconds
-     * @returns {string}
-     */
-    formatDurationFromSeconds: function (seconds) {
-        var hours = Math.floor(seconds / 3600);
-        var minutes = Math.floor(seconds / 60) % 60;
-        seconds = seconds % 60;
-
-        return this.addZeros(hours) + ':' + this.addZeros(minutes) + ':' + this.addZeros(seconds);
     },
 
     formatToDateTime: function (time) {

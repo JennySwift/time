@@ -18,7 +18,7 @@
                 v-bind:style="{'background': activity.color}"
                 class="label label-default"
             >
-                {{ activity.name }} {{ activity.totalMinutesForDay | formatDuration }}
+                {{ activity.name }} {{ activity.totalMinutesForDay | formatDurationFromMinutes }}
             </span>
         </div>
 
@@ -63,7 +63,7 @@
                         </td>
 
                         <td>
-                            <span>{{ timer.durationInMinutesForDay | formatDuration }}</span>
+                            <span>{{ timer.durationInMinutesForDay | formatDurationFromMinutes }}</span>
                         </td>
 
                         <td>
@@ -108,11 +108,11 @@
                                     {{ activity.name }}
                                 </span>
                             </td>
-                            <td>{{ activity.totalMinutesForWeek | formatDuration }}</td>
-                            <td>{{ activity.averageMinutesPerDayForWeek | formatDuration }}</td>
+                            <td>{{ activity.totalMinutesForWeek | formatDurationFromMinutes }}</td>
+                            <td>{{ activity.averageMinutesPerDayForWeek | formatDurationFromMinutes }}</td>
                             <td>
                                 <div v-if="activity.totalMinutesForAllTime">
-                                    {{ activity.totalMinutesForAllTime | formatDuration }}
+                                    {{ activity.totalMinutesForAllTime | formatDurationFromMinutes }}
                                 </div>
                                 <div v-else>-</div>
                             </td>
@@ -150,8 +150,8 @@
 
                 return number;
             },
-            formatDuration: function (minutes) {
-                return helpers.formatDuration(minutes);
+            formatDurationFromMinutes: function (minutes) {
+                return helpers.formatDurationFromMinutes(minutes);
             }
         },
         components: {},

@@ -37,13 +37,13 @@ describe('filters', function () {
     });
 
     it('can format the minutes', function () {
-        var result = helpers.formatDuration(60);
+        var result = helpers.formatDurationFromMinutes(60);
         assert.equal('01:00', result);
 
-        result = helpers.formatDuration(61);
+        result = helpers.formatDurationFromMinutes(61);
         assert.equal('01:01', result);
 
-        result = helpers.formatDuration(2254);
+        result = helpers.formatDurationFromMinutes(2254);
         assert.equal('37:34', result);
     });
 

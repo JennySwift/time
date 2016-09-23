@@ -20,10 +20,12 @@ module.exports = {
     findIndexById: arrays.findIndexById,
     deleteById: arrays.deleteById,
 
-    //Date and time methods
-    formatDuration: dateAndTime.formatDuration,
-    formatDateTime: dateAndTime.formatDateTime,
+    //Duration methods
+    formatDurationFromMinutes: dateAndTime.formatDurationFromMinutes,
     formatDurationFromSeconds: dateAndTime.formatDurationFromSeconds,
+
+    //Date and time methods
+    formatDateTime: dateAndTime.formatDateTime,
     formatToDateTime: dateAndTime.formatToDateTime,
     momentFormatToDateTime: dateAndTime.momentFormatToDateTime,
     formatTime: dateAndTime.formatTime,
