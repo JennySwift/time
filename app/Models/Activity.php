@@ -42,26 +42,6 @@ class Activity extends Model
     }
 
     /**
-     * Get the timer's for an activity whose start or finish
-     * is on a particular date or week
-     * @param Carbon $date
-     * @return mixed
-     */
-    public function getTimersForTimePeriod(Carbon $date)
-    {
-        $date = $date->format('Y-m-d') . '%';
-
-        //Todo: this query is much the same as in timers repository for timers index method.
-        //Create a query scope?
-        return $this->timers()
-            ->where(function ($q) use ($date) {
-                $q->where('finish', 'LIKE', $date)
-                    ->orWhere('start', 'LIKE', $date);
-            })
-            ->get();
-    }
-
-    /**
      *
      * @return int
      */
@@ -87,7 +67,7 @@ class Activity extends Model
     public function calculateTotalMinutesForDay(Carbon $startOfDay, Carbon $endOfDay)
     {
         $total = 0;
-        $timers = $this->getTimersForTimePeriod($startOfDay);
+        $timers = $this->timers()->onDate($startOfDay->copy()->format('Y-m-d'))->get();
 
         foreach ($timers as $timer) {
             $total += $timer->getTotalMinutesForDay($startOfDay);

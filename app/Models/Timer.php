@@ -51,7 +51,7 @@ class Timer extends Model
      */
     public function scopeOnDate($query, $dateString)
     {
-        $dateString = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d') . '%';
+        $dateString = $dateString . '%';
 
         return $query->where(function ($q) use ($dateString) {
             $q->where('finish', 'LIKE', $dateString)
