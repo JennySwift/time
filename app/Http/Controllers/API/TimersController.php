@@ -84,7 +84,7 @@ class TimersController extends Controller
         $timer->activity()->associate($activity);
         $timer->save();
 
-        return $this->respond($timer, new TimerTransformer(['date' => $this->calculateFinishDate($timer)]), 201);
+        return $this->respond($timer, new TimerTransformer(['date' => $timer->finishDate]), 201);
     }
 
     /**
@@ -108,26 +108,7 @@ class TimersController extends Controller
             $timer->save();
         }
 
-        $finishDate = $this->calculateFinishDate($timer);
-
-        return $this->respond($timer, new TimerTransformer(['date' => $finishDate]), 200);
-    }
-
-    /**
-     *
-     * @param Timer $timer
-     * @return null|string
-     */
-    private function calculateFinishDate(Timer $timer)
-    {
-        if ($timer->finish) {
-            $finishDate = Carbon::createFromFormat('Y-m-d H:i:s', $timer->finish)->format('Y-m-d');
-        }
-        else {
-            $finishDate = null;
-        }
-
-        return $finishDate;
+        return $this->respond($timer, new TimerTransformer(['date' => $timer->finishDate]), 200);
     }
 
     /**

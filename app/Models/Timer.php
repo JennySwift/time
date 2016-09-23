@@ -81,6 +81,19 @@ class Timer extends Model
 
     /**
      *
+     * @return null|string
+     */
+    public function getFinishDateAttribute()
+    {
+        if ($this->finish) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $this->finish)->format('Y-m-d');
+        }
+
+        return null;
+    }
+
+    /**
+     *
      * @return int
      */
     public function getTotalMinutesAttribute()
