@@ -2,34 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Activity;
 use Carbon\Carbon;
 
-class ActivitiesRepository {
-
-    /**
-     *
-     * @param $startOfDay
-     * @param $endOfDay
-     * @return mixed
-     */
-    public function getActivitiesForDay($startOfDay, $endOfDay)
-    {
-        return Activity::forCurrentUser()
-            ->whereHas('timers', function ($q) use ($startOfDay, $endOfDay) {
-                $q->where(function ($q) use ($startOfDay, $endOfDay) {
-                    $q->whereBetween('start', [$startOfDay, $endOfDay])
-                        ->orWhereBetween('finish', [$startOfDay, $endOfDay]);
-                });
-            })
-            ->get();
-    }
+class ActivitiesRepository
+{
 
     /**
      *
      * @param $date
      * @return array
-//     */
+    //     */
 //    public function calculateTotalMinutesForWeek($date)
 //    {
 //        Carbon::setWeekStartsAt(Carbon::SUNDAY);

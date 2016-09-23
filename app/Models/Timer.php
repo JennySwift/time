@@ -58,7 +58,6 @@ class Timer extends Model
                 ->orWhere('start', 'LIKE', $dateString);
         })
             ->whereNotNull('finish');
-
     }
 
     /**

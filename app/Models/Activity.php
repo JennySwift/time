@@ -116,4 +116,25 @@ class Activity extends Model
         }
 
     }
+
+    /**
+     * 
+     * @param $query
+     * @param $dateString
+     * @return mixed
+     */
+    public function scopeOnDate($query, $dateString)
+    {
+        $dateString = $dateString . '%';
+
+        return $query->whereHas('timers', function ($q) use ($dateString)
+        {
+            $q->where(function ($q) use ($dateString)
+            {
+                $q->where('finish', 'LIKE', $dateString)
+                    ->orWhere('start', 'LIKE', $dateString);
+            })->whereNotNull('finish');
+        });
+
+    }
 }

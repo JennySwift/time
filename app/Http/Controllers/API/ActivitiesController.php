@@ -46,11 +46,8 @@ class ActivitiesController extends Controller
             }
 
             if ($request->has('forDay')) {
-                $startOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(0)->minute(0)->second(0);
-                $endOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(24)->minute(0)->second(0);
-
                 $params['forDay'] = true;
-                $activities = $this->activitiesRepository->getActivitiesForDay($startOfDay, $endOfDay);
+                $activities = Activity::forCurrentUser()->onDate($date)->get();
             }
 
         }
