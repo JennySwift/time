@@ -32,6 +32,10 @@ class ActivitySeeder extends Seeder
             [
                 'name' => 'reading',
                 'color' => 'pink'
+            ],
+            [
+                'name' => 'walking',
+                'color' => 'red'
             ]
         ];
 

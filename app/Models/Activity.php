@@ -80,12 +80,14 @@ class Activity extends Model
     /**
      * Calculate how many minutes have been spent on the activity
      * for the week
-     * @param Carbon $startOfWeek
-     * @param Carbon $endOfWeek
+     * @param $date
      * @return int
      */
     public function getTotalMinutesForWeek($date)
     {
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SATURDAY);
+
         $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
         $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
 
@@ -112,7 +114,7 @@ class Activity extends Model
         $date = Carbon::createFromFormat('Y-m-d', $date);
         if (Carbon::today() < $date->copy()->endOfWeek()) {
             //The week isn't over yet.
-            return round($this->totalMinutesForWeek / (Carbon::today()->dayOfWeek + 1));
+            return round($this->getTotalMinutesForWeek($date->format('Y-m-d')) / (Carbon::today()->dayOfWeek + 1));
 
         }
         else {
