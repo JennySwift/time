@@ -4,13 +4,20 @@ require('sugar');
 var moment = require('moment');
 require('sweetalert2');
 var requests = require('./Requests');
+var arrays = require('./Arrays');
 
 module.exports = {
 
+    //Request methods
     get: requests.get,
     post: requests.post,
     put: requests.put,
     delete: requests.delete,
+
+    //Array methods
+    findById: arrays.findById,
+    findIndexById: arrays.findIndexById,
+    deleteById: arrays.deleteById,
 
     /**
      *
@@ -30,43 +37,6 @@ module.exports = {
      */
     clone: function (object) {
         return JSON.parse(JSON.stringify(object));
-    },
-
-    /**
-     *
-     * @param array
-     * @param id
-     * @returns {*}
-     */
-    findById: function (array, id) {
-        var index = this.findIndexById(array, id);
-        return array[index];
-    },
-
-    /**
-     *
-     * @param array
-     * @param id
-     * @returns {*}
-     */
-    findIndexById: function (array, id) {
-        // return _.indexOf(array, _.findWhere(array, {id: id}));
-        //So it still work if id is a string
-        return _.indexOf(array, _.find(array, function (item) {
-            return item.id == id;
-        }));
-    },
-
-    /**
-     *
-     * @param array
-     * @param id
-     */
-    deleteById: function (array, id) {
-        var index = helpers.findIndexById(array, id);
-        array = _.without(array, array[index]);
-
-        return array;
     },
 
     /**
