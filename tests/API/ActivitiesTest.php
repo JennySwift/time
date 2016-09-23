@@ -57,16 +57,22 @@ class ActivitiesTest extends TestCase
     {
         $response = $this->call('GET', '/api/activities?date=' . Carbon::yesterday()->format('Y-m-d'));
         $content = json_decode($response->getContent(), true);
-//      dd($content);
+      dd($content);
 
         $this->checkActivityKeysExist($content[0], true);
 
         $this->checkContent($content);
 
         $this->assertEquals(1980, $content[0]['week']['totalMinutes']);
+        $this->assertEquals(1980, $content[0]['week']['hours']);
+        $this->assertEquals(1980, $content[0]['week']['minutes']);
+
         $this->assertEquals(990, $content[0]['week']['averageMinutesPerDay']);
 
         $this->assertEquals(120, $content[1]['week']['totalMinutes']);
+        $this->assertEquals(120, $content[1]['week']['hours']);
+        $this->assertEquals(120, $content[1]['week']['minutes']);
+
         $this->assertEquals(60, $content[1]['week']['averageMinutesPerDay']);
 
         $this->assertEquals('untracked', $content[2]['name']);

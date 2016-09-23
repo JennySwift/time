@@ -123,7 +123,12 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         if ($weekValues) {
             $this->assertArrayHasKey('totalMinutes', $activity['week']);
-            $this->assertArrayHasKey('averageMinutesPerDay', $activity['week']);
+            $this->assertArrayHasKey('hours', $activity['week']);
+            $this->assertArrayHasKey('minutes', $activity['week']);
+
+            $this->assertArrayHasKey('totalMinutes', $activity['week']['dailyAverage']);
+            $this->assertArrayHasKey('hours', $activity['week']['dailyAverage']);
+            $this->assertArrayHasKey('minutes', $activity['week']['dailyAverage']);
         }
     }
 }

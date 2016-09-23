@@ -88,11 +88,11 @@
                                     {{ activity.name }}
                                 </span>
                             </td>
-                            <td>{{ formatDurationFromMinutes(activity.totalMinutesForWeek).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForWeek).minutes }}</td>
-                            <td>{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}:{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}</td>
+                            <td>{{ activity.week.hours | doubleDigits }}:{{ activity.week.minutes | doubleDigits }}</td>
+                            <td>{{ activity.week.dailyAverage.hours | doubleDigits }}:{{ activity.week.dailyAverage.minutes | doubleDigits }}</td>
                             <td>
                                 <div v-if="activity.duration.totalMinutes">
-                                    {{ activity.duration.hours | doubleDigits }}:{{ activity.duration.minutes.doubleDigits }}
+                                    {{ activity.duration.hours | doubleDigits }}:{{ activity.duration.minutes | doubleDigits }}
                                 </div>
                                 <div v-else>-</div>
                             </td>

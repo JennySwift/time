@@ -49,10 +49,22 @@ class ActivityTransformer extends TransformerAbstract
             $date = $this->params['date'];
             $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
             $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
+            $totalMinutesForWeek = $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
+
+            $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
+            $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date);
 
             $array['week'] = [
-                'totalMinutes' => $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek),
-                'averageMinutesPerDay' => $activity->calculateAverageMinutesPerDayForWeek($date)
+                'totalMinutes' => $totalMinutesForWeek,
+                'hours' => floor($totalMinutesForWeek / 60),
+                'minutes' => $totalMinutesForWeek % 60,
+
+                'dailyAverage' => [
+                    'totalMinutes' => $dailyAverageMinutes,
+                    'hours' => floor($dailyAverageMinutes / 60),
+                    'minutes' => $dailyAverageMinutes % 60,
+                ]
+
             ];
         }
 

@@ -131,7 +131,7 @@ module.exports = {
      */
     getTotalMinutesForActivitiesForTheWeek: function () {
         helpers.get({
-            url: '/api/activities/getTotalMinutesForWeek?date=' + this.state.date.sql,
+            url: '/api/activities/?date=' + this.state.date.sql,
             callback: function (response) {
                 this.state.activitiesWithDurationsForTheWeek = response;
             }.bind(this)

@@ -124,7 +124,7 @@ class Activity extends Model
             $day = $day->subDay();
         }
 
-        return $total;
+        return $this->totalMinutesForWeek = $total;
     }
 
     /**
