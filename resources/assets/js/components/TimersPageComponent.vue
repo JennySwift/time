@@ -137,7 +137,7 @@
         },
         methods: {
             orderActivities: function (a, b) {
-                return a.week.hours < b.week.hours && a.week.minutes < b.week.minutes;
+                return a.week.totalMinutes < b.week.totalMinutes;
             },
 
             /**
