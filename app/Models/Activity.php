@@ -116,23 +116,4 @@ class Activity extends Model
         }
 
     }
-
-
-    /**
-     *
-     * @return float
-     */
-//    public function hoursForDay()
-//    {
-//        return $this->hoursForDay = floor($this->totalMinutesForDay / 60);
-//    }
-
-    /**
-     * Not the total minutes for the day
-     * @return int
-     */
-//    public function minutesForDay()
-//    {
-//        return $this->minutesForDay = $this->totalMinutesForDay % 60;
-//    }
 }
