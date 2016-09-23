@@ -57,7 +57,7 @@ class ActivitiesTest extends TestCase
     {
         $response = $this->call('GET', '/api/activities?date=' . Carbon::yesterday()->format('Y-m-d'));
         $content = json_decode($response->getContent(), true);
-      dd($content);
+//      dd($content);
 
         $this->checkActivityKeysExist($content[0], true);
 

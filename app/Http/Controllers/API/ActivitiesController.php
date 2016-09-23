@@ -94,20 +94,6 @@ class ActivitiesController extends Controller
 
     /**
      *
-     * @param Request $request
-     * @return Response
-     */
-    public function calculateTotalMinutesForWeek(Request $request)
-    {
-        $activities =  $this->activitiesRepository->calculateTotalMinutesForWeek($request->get('date'));
-
-        $activities = $this->transform($this->createCollection($activities, new ActivityTransformer))['data'];
-
-        return response($activities, Response::HTTP_OK);
-    }
-
-    /**
-     *
      * @param Activity $activity
      * @return Response
      */
