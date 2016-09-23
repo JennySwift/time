@@ -5,11 +5,11 @@
         </td>
 
         <td class="duration">
-            <span>{{ timer.hours | doubleDigits }}:{{ timer.minutes | doubleDigits }}</span>
+            <span>{{ timer.duration.hours | doubleDigits }}:{{ timer.duration.minutes | doubleDigits }}</span>
         </td>
 
         <td>
-            <span>{{ formatDurationFromMinutes(timer.durationInMinutesForDay).hours }}</span><span>:{{ formatDurationFromMinutes(timer.durationInMinutesForDay).minutes }}</span>
+            <span>{{ timer.durationForDay.hours | doubleDigits }}</span><span>:{{ timer.durationForDay.minutes | doubleDigits }}</span>
         </td>
 
         <td>
@@ -48,9 +48,9 @@
              * @param minutes
              * @returns {*|{hours, minutes}}
              */
-            formatDurationFromMinutes: function (minutes) {
-                return helpers.formatDurationFromMinutes(minutes);
-            }
+//            formatDurationFromMinutes: function (minutes) {
+//                return helpers.formatDurationFromMinutes(minutes);
+//            }
         },
         props: [
             'timer'
