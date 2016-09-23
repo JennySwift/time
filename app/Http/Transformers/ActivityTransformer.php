@@ -3,6 +3,7 @@
 namespace App\Http\Transformers;
 
 use App\Models\Activity;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -10,6 +11,20 @@ use League\Fractal\TransformerAbstract;
  */
 class ActivityTransformer extends TransformerAbstract
 {
+    /**
+     * @var array
+     */
+    private $params;
+
+    /**
+     * ActivityTransformer constructor.
+     * @param array $params
+     */
+    public function __construct($params = [])
+    {
+        $this->params = $params;
+    }
+
     /**
      * @param Activity $activity
      * @return array
@@ -29,6 +44,17 @@ class ActivityTransformer extends TransformerAbstract
                 'minutes' => $totalMinutes % 60
             ]
         ];
+
+        if (isset($this->params['date'])) {
+            $date = $this->params['date'];
+            $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
+            $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
+
+            $array['week'] = [
+                'totalMinutes' => $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek),
+                'averageMinutesPerDay' => $activity->calculateAverageMinutesPerDayForWeek($date)
+            ];
+        }
 
         return $array;
     }

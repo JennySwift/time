@@ -35,11 +35,7 @@
                 return helpers.formatDateTime(dateTime, format);
             },
             doubleDigits: function (number) {
-                if (number < 10) {
-                    return '0' + number;
-                }
-
-                return number;
+                return helpers.addZeros(number);
             },
         },
         methods: {

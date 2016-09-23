@@ -28,12 +28,19 @@ class ActivitiesController extends Controller
 
     /**
      *
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $activities = Activity::forCurrentUser()->get();
-        $activities = $this->transform($this->createCollection($activities, new ActivityTransformer))['data'];
+
+        $params = null;
+        if ($request->has('date')) {
+            $params = ['date' => $request->get('date')];
+        }
+
+        $activities = $this->transform($this->createCollection($activities, new ActivityTransformer($params)))['data'];
 
         return response($activities, Response::HTTP_OK);
     }
@@ -88,11 +95,15 @@ class ActivitiesController extends Controller
     /**
      *
      * @param Request $request
-     * @return array
+     * @return Response
      */
     public function calculateTotalMinutesForWeek(Request $request)
     {
-        return $this->activitiesRepository->calculateTotalMinutesForWeek($request->get('date'));
+        $activities =  $this->activitiesRepository->calculateTotalMinutesForWeek($request->get('date'));
+
+        $activities = $this->transform($this->createCollection($activities, new ActivityTransformer))['data'];
+
+        return response($activities, Response::HTTP_OK);
     }
 
     /**

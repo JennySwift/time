@@ -55,31 +55,26 @@ class ActivitiesRepository {
      *
      * @param $date
      * @return array
-     */
-    public function calculateTotalMinutesForWeek($date)
-    {
-        Carbon::setWeekStartsAt(Carbon::SUNDAY);
-        Carbon::setWeekEndsAt(Carbon::SATURDAY);
-
-        $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
-        $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
-
-        //For calculating total untracked time
-        $totalMinutesForAllActivities = 0;
-
-        $activities = Activity::forCurrentUser()->get();
-
-        foreach ($activities as $activity) {
-            $activity->totalMinutesForWeek = $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
-            $activity->totalMinutesForAllTime();
-            $activity->averageMinutesPerDayForWeek = $activity->calculateAverageMinutesPerDayForWeek($date);
-            $totalMinutesForAllActivities += $activity->totalMinutesForWeek;
-        }
-
-        $activities[] = $this->getUntrackedTimeForWeek($totalMinutesForAllActivities, $date);
-
-        return $activities;
-    }
+//     */
+//    public function calculateTotalMinutesForWeek($date)
+//    {
+//        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+//        Carbon::setWeekEndsAt(Carbon::SATURDAY);
+//
+//        //For calculating total untracked time
+////        $totalMinutesForAllActivities = 0;
+//
+//        $activities = Activity::forCurrentUser()->get();
+//
+////        foreach ($activities as $activity) {
+////            $totalMinutesForAllActivities += $activity->totalMinutesForWeek;
+////        }
+//
+//        //todo: this made my transformer error
+////        $activities[] = $this->getUntrackedTimeForWeek($totalMinutesForAllActivities, $date);
+//
+//        return $activities;
+//    }
 
     /**
      * Instead of subtracting the totalMinutesForAllActivitesForWeek

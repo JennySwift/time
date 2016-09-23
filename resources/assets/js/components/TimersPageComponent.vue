@@ -91,8 +91,8 @@
                             <td>{{ formatDurationFromMinutes(activity.totalMinutesForWeek).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForWeek).minutes }}</td>
                             <td>{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}:{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}</td>
                             <td>
-                                <div v-if="activity.totalMinutesForAllTime">
-                                    {{ formatDurationFromMinutes(activity.totalMinutesForAllTime).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForAllTime).hours }}
+                                <div v-if="activity.duration.totalMinutes">
+                                    {{ activity.duration.hours | doubleDigits }}:{{ activity.duration.minutes.doubleDigits }}
                                 </div>
                                 <div v-else>-</div>
                             </td>
@@ -120,6 +120,9 @@
             };
         },
         filters: {
+            doubleDigits: function (number) {
+                return helpers.addZeros(number);
+            },
             formatDateTime: function (dateTime, format) {
                 return helpers.formatDateTime(dateTime, format);
             },

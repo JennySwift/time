@@ -17,9 +17,6 @@ class TimersTest extends TestCase
      */
     public function it_checks_for_timer_in_progress()
     {
-        DB::beginTransaction();
-        $this->logInUser();
-
         $timer = [
             'start' => '2015-12-01 21:00:00',
             'activity_id' => Activity::where('name', 'work')->first()->id
@@ -39,8 +36,6 @@ class TimersTest extends TestCase
         $this->assertArrayHasKey('activity', $content);
 
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
-
-        DB::rollBack();
     }
     
     /**
@@ -48,8 +43,6 @@ class TimersTest extends TestCase
      */
     public function it_can_show_a_timer()
     {
-        $this->logInUser();
-    
         $timer = Timer::forCurrentUser()->first();
     
         $response = $this->call('GET', '/api/timers/' . $timer->id);

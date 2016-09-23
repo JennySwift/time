@@ -111,7 +111,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @param $activity
      */
-    protected function checkActivityKeysExist($activity)
+    protected function checkActivityKeysExist($activity, $weekValues = null)
     {
         $this->assertArrayHasKey('id', $activity);
         $this->assertArrayHasKey('name', $activity);
@@ -120,5 +120,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->assertArrayHasKey('totalMinutes', $activity['duration']);
         $this->assertArrayHasKey('hours', $activity['duration']);
         $this->assertArrayHasKey('minutes', $activity['duration']);
+
+        if ($weekValues) {
+            $this->assertArrayHasKey('totalMinutes', $activity['week']);
+            $this->assertArrayHasKey('averageMinutesPerDay', $activity['week']);
+        }
     }
 }
