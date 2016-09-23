@@ -51,11 +51,28 @@ class TimersIndexTest extends TestCase
     public function it_gets_the_timers_for_a_day()
     {
         $content = $this->getTimers(Carbon::yesterday());
+//        dd($content);
 
-        $this->assertEquals(75, $content[0]['durationInMinutesForDay']);
-        $this->assertEquals(180, $content[1]['durationInMinutesForDay']);
-        $this->assertEquals(60, $content[2]['durationInMinutesForDay']);
-        $this->assertEquals(510, $content[3]['durationInMinutesForDay']);
+        $this->assertEquals(75, $content[0]['durationForDay']['totalMinutes']);
+        $this->assertEquals(1, $content[0]['durationForDay']['hours']);
+        $this->assertEquals(15, $content[0]['durationForDay']['minutes']);
+        $this->assertEquals(75, $content[0]['duration']['totalMinutes']);
+        $this->assertEquals(1, $content[0]['duration']['hours']);
+        $this->assertEquals(15, $content[0]['duration']['minutes']);
+
+        $this->assertEquals(675, $content[1]['duration']['totalMinutes']);
+        $this->assertEquals(11, $content[1]['duration']['hours']);
+        $this->assertEquals(15, $content[1]['duration']['minutes']);
+        $this->assertEquals(180, $content[1]['durationForDay']['totalMinutes']);
+        $this->assertEquals(3, $content[1]['durationForDay']['hours']);
+        $this->assertEquals(0, $content[1]['durationForDay']['minutes']);
+
+        $this->assertEquals(690, $content[3]['duration']['totalMinutes']);
+        $this->assertEquals(11, $content[3]['duration']['hours']);
+        $this->assertEquals(30, $content[3]['duration']['minutes']);
+        $this->assertEquals(510, $content[3]['durationForDay']['totalMinutes']);
+        $this->assertEquals(8, $content[3]['durationForDay']['hours']);
+        $this->assertEquals(30, $content[3]['durationForDay']['minutes']);
     }
 
     /**

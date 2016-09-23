@@ -43,19 +43,29 @@ class TimerTransformer extends TransformerAbstract
 
         $array = [
             'id' => $timer->id,
-//            'start' => Carbon::createFromFormat('Y-m-d H:i:s', $timer->start),
             'start' => $timer->start,
             'startDate' => $start->format('d/m/y'),
             'finish' => $timer->finish
         ];
 
         if ($timer->finish) {
-            $array['hours'] = $timer->hours;
-            $array['minutes'] = $timer->minutes;
-            $array['durationInMinutes'] = $timer->totalMinutes;
+            $array['duration'] = [
+                'totalMinutes' => $timer->totalMinutes,
+
+                //If total minutes is 90, hours will be 1 and minutes, 30
+                'hours' => $timer->hours,
+                'minutes' => $timer->minutes,
+            ];
 
             if (isset($this->params['date'])) {
-                $array['durationInMinutesForDay'] = $timer->getTotalMinutesForDay(Carbon::createFromFormat('Y-m-d', $this->params['date']));
+                $totalMinutesForDay = $timer->getTotalMinutesForDay(Carbon::createFromFormat('Y-m-d', $this->params['date']));
+                $array['durationForDay'] = [
+                    'totalMinutes' => $totalMinutesForDay,
+
+                    //If total minutes is 90, hours will be 1 and minutes, 30
+                    'hours' => floor($totalMinutesForDay / 60),
+                    'minutes' => $totalMinutesForDay % 60
+                ];
             }
         }
 

@@ -69,6 +69,17 @@ class Timer extends Model
 
     /**
      *
+     * @return static
+     */
+    public function getFinish()
+    {
+        if (!$this->finish) return false;
+
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->finish);
+    }
+
+    /**
+     *
      * @return int
      */
     public function getTotalMinutesAttribute()
@@ -90,36 +101,14 @@ class Timer extends Model
 
     /**
      *
-     * @return mixed|string
+     * @return array
      */
-//    public function getFormattedMinutesAttribute()
-//    {
-//        if ($this->minutes < 10) {
-//            return '0' . $this->minutes;
-//        }
-//        else {
-//            return $this->minutes;
-//        }
-//    }
-
-    /**
-     *
-     * @return string
-     */
-//    public function getFormattedStartAttribute()
-//    {
-//        return Carbon::createFromFormat('Y-m-d H:i:s', $this->start)->format('g:ia');
-//    }
-
-    /**
-     *
-     * @return static
-     */
-    public function getFinish()
+    public function getDurationForDayAttribute()
     {
-        if (!$this->finish) return false;
-
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->finish);
+        return [
+            'hours' => $this->hoursForDay,
+            'minutes' => $this->minutesForDay
+        ];
     }
 
     /**

@@ -18,9 +18,6 @@ class TimersStoreTest extends TestCase
      */
     public function it_can_create_a_sleep_entry()
     {
-        DB::beginTransaction();
-        $this->logInUser();
-
         $start = '2015-12-01 21:00:00';
         $finish = '2015-12-02 08:30:00';
 
@@ -42,11 +39,11 @@ class TimersStoreTest extends TestCase
         $this->assertEquals($start, $content['start']);
         $this->assertEquals($finish, $content['finish']);
         $this->assertEquals('01/12/15', $content['startDate']);
-        $this->assertEquals(690, $content['durationInMinutes']);
+        $this->assertEquals(690, $content['duration']['totalMinutes']);
+        $this->assertEquals(11, $content['duration']['hours']);
+        $this->assertEquals(30, $content['duration']['minutes']);
 
         $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
-
-        DB::rollBack();
     }
 
     /**

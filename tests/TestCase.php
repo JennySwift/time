@@ -91,12 +91,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $this->assertArrayHasKey('start', $timer);
         $this->assertArrayHasKey('finish', $timer);
         $this->assertArrayHasKey('startDate', $timer);
-        $this->assertArrayHasKey('hours', $timer);
-        $this->assertArrayHasKey('minutes', $timer);
         $this->assertArrayHasKey('activity', $timer);
 
+        $this->assertArrayHasKey('duration', $timer);
+        $this->assertArrayHasKey('totalMinutes', $timer['duration']);
+        $this->assertArrayHasKey('hours', $timer['duration']);
+        $this->assertArrayHasKey('minutes', $timer['duration']);
+
         if (!isset($onlyBasicKeys)) {
-            $this->assertArrayHasKey('durationInMinutesForDay', $timer);
+            $this->assertArrayHasKey('durationForDay', $timer);
+            $this->assertArrayHasKey('totalMinutes', $timer['durationForDay']);
+            $this->assertArrayHasKey('hours', $timer['durationForDay']);
+            $this->assertArrayHasKey('minutes', $timer['durationForDay']);
         }
 
     }
