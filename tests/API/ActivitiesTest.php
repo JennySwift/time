@@ -55,7 +55,7 @@ class ActivitiesTest extends TestCase
      */
     public function it_can_get_the_activities_with_their_durations_for_the_week()
     {
-        $response = $this->call('GET', '/api/activities?date=' . Carbon::yesterday()->format('Y-m-d'));
+        $response = $this->call('GET', '/api/activities?forWeek=true&date=' . Carbon::yesterday()->format('Y-m-d'));
         $content = json_decode($response->getContent(), true);
 //      dd($content);
 
@@ -101,26 +101,27 @@ class ActivitiesTest extends TestCase
      * @test
      * @return void
      */
-    public function it_gets_the_total_minutes_for_the_day_for_the_activity()
+    public function it_can_get_the_total_minutes_for_the_day_for_the_activities()
     {
-        $this->logInUser();
         $date = Carbon::today()->format('Y-m-d');
-        $response = $this->call('GET', '/api/activities/getTotalMinutesForDay?date=' . $date);
+        $response = $this->call('GET', '/api/activities?forDay=true&date=' . $date);
         $content = json_decode($response->getContent(), true);
 //      dd($content);
 
-        $this->assertArrayHasKey('id', $content[0]);
-        $this->assertArrayHasKey('name', $content[0]);
-        $this->assertArrayHasKey('totalMinutesForDay', $content[0]);
+        $this->checkActivityKeysExist($content[0], false, true);
 
         $this->assertEquals('sleep', $content[0]['name']);
-        $this->assertEquals(735, $content[0]['totalMinutesForDay']);
+        $this->assertEquals(735, $content[0]['day']['totalMinutes']);
+        $this->assertEquals(12, $content[0]['day']['hours']);
+        $this->assertEquals(15, $content[0]['day']['minutes']);
 
         $this->assertEquals('work', $content[1]['name']);
-        $this->assertEquals(60, $content[1]['totalMinutesForDay']);
+        $this->assertEquals(60, $content[1]['day']['totalMinutes']);
+        $this->assertEquals(1, $content[1]['day']['hours']);
+        $this->assertEquals(0, $content[1]['day']['minutes']);
 
-        $this->assertContains('untracked', $content[2]['name']);
-        $this->assertEquals(645, $content[2]['totalMinutesForDay']);
+//        $this->assertContains('untracked', $content[2]['name']);
+//        $this->assertEquals(645, $content[2]['day']['totalMinutes']);
 
         $this->assertEquals(200, $response->getStatusCode());
     }
@@ -140,9 +141,7 @@ class ActivitiesTest extends TestCase
         $content = json_decode($response->getContent(), true);
 //      dd($content);
 
-        $this->assertArrayHasKey('id', $content);
-        $this->assertArrayHasKey('name', $content);
-        $this->assertArrayHasKey('color', $content);
+        $this->checkActivityKeysExist($content);
 
         $this->assertEquals('koala', $content['name']);
         $this->assertEquals('red', $content['color']);

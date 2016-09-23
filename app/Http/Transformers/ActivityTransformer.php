@@ -47,25 +47,41 @@ class ActivityTransformer extends TransformerAbstract
 
         if (isset($this->params['date'])) {
             $date = $this->params['date'];
-            $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
-            $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
-            $totalMinutesForWeek = $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
 
-            $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
-            $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date);
+            if (isset($this->params['forWeek'])) {
+                $startOfWeek = Carbon::createFromFormat('Y-m-d', $date)->startOfWeek();
+                $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
 
-            $array['week'] = [
-                'totalMinutes' => $totalMinutesForWeek,
-                'hours' => floor($totalMinutesForWeek / 60),
-                'minutes' => $totalMinutesForWeek % 60,
+                $totalMinutesForWeek = $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
 
-                'dailyAverage' => [
-                    'totalMinutes' => $dailyAverageMinutes,
-                    'hours' => floor($dailyAverageMinutes / 60),
-                    'minutes' => $dailyAverageMinutes % 60,
-                ]
+                $activity->calculateTotalMinutesForWeek($startOfWeek, $endOfWeek);
+                $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date);
 
-            ];
+                $array['week'] = [
+                    'totalMinutes' => $totalMinutesForWeek,
+                    'hours' => floor($totalMinutesForWeek / 60),
+                    'minutes' => $totalMinutesForWeek % 60,
+
+                    'dailyAverage' => [
+                        'totalMinutes' => $dailyAverageMinutes,
+                        'hours' => floor($dailyAverageMinutes / 60),
+                        'minutes' => $dailyAverageMinutes % 60,
+                    ]
+
+                ];
+            }
+
+            if (isset($this->params['forDay'])) {
+                $startOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(0)->minute(0)->second(0);
+                $endOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(24)->minute(0)->second(0);
+                $totalMinutesForDay = $activity->calculateTotalMinutesForDay($startOfDay, $endOfDay);
+
+                $array['day'] = [
+                    'totalMinutes' => $totalMinutesForDay,
+                    'hours' => floor($totalMinutesForDay / 60),
+                    'minutes' => $totalMinutesForDay % 60,
+                ];
+            }
         }
 
         return $array;

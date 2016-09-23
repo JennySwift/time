@@ -7,6 +7,7 @@ use App\Http\Transformers\ActivityTransformer;
 use App\Models\Activity;
 use App\Repositories\ActivitiesRepository;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -37,7 +38,21 @@ class ActivitiesController extends Controller
 
         $params = null;
         if ($request->has('date')) {
-            $params = ['date' => $request->get('date')];
+            $date = $request->get('date');
+            $params = ['date' => $date];
+
+            if ($request->has('forWeek')) {
+                $params['forWeek'] = true;
+            }
+
+            if ($request->has('forDay')) {
+                $startOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(0)->minute(0)->second(0);
+                $endOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(24)->minute(0)->second(0);
+
+                $params['forDay'] = true;
+                $activities = $this->activitiesRepository->getActivitiesForDay($startOfDay, $endOfDay);
+            }
+
         }
 
         $activities = $this->transform($this->createCollection($activities, new ActivityTransformer($params)))['data'];
@@ -80,16 +95,6 @@ class ActivitiesController extends Controller
         $activity = $this->transform($this->createItem($activity, new ActivityTransformer))['data'];
 
         return response($activity, Response::HTTP_OK);
-    }
-
-    /**
-     *
-     * @param Request $request
-     * @return array
-     */
-    public function calculateTotalMinutesForAllActivitiesForDay(Request $request)
-    {
-        return $this->activitiesRepository->calculateTotalMinutesForAllActivitiesForDay($request->get('date'));
     }
 
     /**

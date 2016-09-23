@@ -13,7 +13,7 @@ class ActivitiesRepository {
      * @param $endOfDay
      * @return mixed
      */
-    private function getActivitiesForDay($startOfDay, $endOfDay)
+    public function getActivitiesForDay($startOfDay, $endOfDay)
     {
         return Activity::forCurrentUser()
             ->whereHas('timers', function ($q) use ($startOfDay, $endOfDay) {
@@ -23,32 +23,6 @@ class ActivitiesRepository {
                 });
             })
             ->get();
-    }
-
-    /**
-     *
-     * @param $date
-     * @return array
-     */
-    public function calculateTotalMinutesForAllActivitiesForDay($date)
-    {
-        $startOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(0)->minute(0)->second(0);
-        $endOfDay = Carbon::createFromFormat('Y-m-d', $date)->hour(24)->minute(0)->second(0);
-
-        $activitiesForDay = $this->getActivitiesForDay($startOfDay, $endOfDay);
-
-        //For calculating total untracked time
-        $totalMinutesForAllActivities = 0;
-
-        foreach ($activitiesForDay as $activity) {
-            $activity->totalMinutesForDay = $activity->calculateTotalMinutesForDay($startOfDay, $endOfDay);
-
-            $totalMinutesForAllActivities += $activity->totalMinutesForDay;
-        }
-
-        $activitiesForDay[] = $this->getUntrackedTimeForDay($totalMinutesForAllActivities);
-
-        return $activitiesForDay;
     }
 
     /**
@@ -103,10 +77,10 @@ class ActivitiesRepository {
         ];
     }
 
-
     /**
      *
-     * @param $totalMinutesForDay
+     * @param $totalMinutesForAllActivitiesForDay
+     * @return array
      */
     private function getUntrackedTimeForDay($totalMinutesForAllActivitiesForDay)
     {
