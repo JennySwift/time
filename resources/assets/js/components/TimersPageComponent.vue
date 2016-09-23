@@ -18,7 +18,7 @@
                 v-bind:style="{'background': activity.color}"
                 class="label label-default"
             >
-                {{ activity.name }} {{ activity.totalMinutesForDay | formatDurationFromMinutes }}
+                {{ activity.name }} {{ formatDurationFromMinutes(activity.totalMinutesForDay).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForDay).minutes }}
             </span>
         </div>
 
@@ -88,11 +88,11 @@
                                     {{ activity.name }}
                                 </span>
                             </td>
-                            <td>{{ activity.totalMinutesForWeek | formatDurationFromMinutes }}</td>
-                            <td>{{ activity.averageMinutesPerDayForWeek | formatDurationFromMinutes }}</td>
+                            <td>{{ formatDurationFromMinutes(activity.totalMinutesForWeek).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForWeek).minutes }}</td>
+                            <td>{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}:{{ formatDurationFromMinutes(activity.averageMinutesPerDayForWeek).hours }}</td>
                             <td>
                                 <div v-if="activity.totalMinutesForAllTime">
-                                    {{ activity.totalMinutesForAllTime | formatDurationFromMinutes }}
+                                    {{ formatDurationFromMinutes(activity.totalMinutesForAllTime).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForAllTime).hours }}
                                 </div>
                                 <div v-else>-</div>
                             </td>
@@ -123,14 +123,22 @@
             formatDateTime: function (dateTime, format) {
                 return helpers.formatDateTime(dateTime, format);
             },
-            formatDurationFromMinutes: function (minutes) {
-                return helpers.formatDurationFromMinutes(minutes);
-            }
+//            formatDurationFromMinutes: function (minutes) {
+//                return helpers.formatDurationFromMinutes(minutes);
+//            }
         },
         components: {
             'timer': require('./TimerComponent.vue')
         },
         methods: {
+            /**
+             *
+             * @param minutes
+             * @returns {*|{hours, minutes}}
+             */
+            formatDurationFromMinutes: function (minutes) {
+                return helpers.formatDurationFromMinutes(minutes);
+            },
 
             /**
              *
