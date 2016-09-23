@@ -83,7 +83,7 @@ class Activity extends Model
      * @param Carbon $endOfWeek
      * @return int
      */
-    public function getTotalMinutesForWeekAttribute($value, Carbon $startOfWeek, Carbon $endOfWeek)
+    public function getTotalMinutesForWeek(Carbon $startOfWeek, Carbon $endOfWeek)
     {
         $total = 0;
         $day = $endOfWeek->copy();
