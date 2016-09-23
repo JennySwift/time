@@ -28,26 +28,24 @@ class TimersController extends Controller
     }
 
     /**
-     *
+     * GET /api/timers
      * @param Request $request
-     * @return Response|static
+     * @return \App\Http\Controllers\Response|static
      */
     public function index(Request $request)
     {
         //This bit is for the graphs
         if ($request->has('byDate')) {
-            $entries = Timer::forCurrentUser()->get();
+            $timers = Timer::forCurrentUser()->get();
 
-            return $this->timersRepository->getTimersInDateRange($entries);
+            return $this->timersRepository->getTimersInDateRange($timers);
         }
 
         else {
             //Return the timers for the date
-            $entries = $this->timersRepository->getTimersOnDate($request->get('date'));
-            $entries = $this->transform($this->createCollection($entries,
-                new TimerTransformer(['date' => $request->get('date')])))['data'];
+            $timers = Timer::forCurrentUser()->onDate($request->get('date'))->get();
 
-            return response($entries, Response::HTTP_OK);
+            return $this->respond($timers, new TimerTransformer(['date' => $request->get('date')]), 200);
         }
     }
 

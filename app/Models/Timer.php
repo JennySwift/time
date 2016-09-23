@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\OnDate;
 use App\Traits\OwnedByUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +41,24 @@ class Timer extends Model
     public function activity()
     {
         return $this->belongsTo('App\Models\Activity');
+    }
+
+    /**
+     *
+     * @param $query
+     * @param $dateString
+     * @return mixed
+     */
+    public function scopeOnDate($query, $dateString)
+    {
+        $dateString = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d') . '%';
+
+        return $query->where(function ($q) use ($dateString) {
+            $q->where('finish', 'LIKE', $dateString)
+                ->orWhere('start', 'LIKE', $dateString);
+        })
+            ->whereNotNull('finish');
+
     }
 
     /**

@@ -59,17 +59,6 @@ class Activity extends Model
                     ->orWhere('start', 'LIKE', $date);
             })
             ->get();
-
-        //This was problematic because it included timers that started at midnight
-        //(on the start of the next day)
-
-//        return $this->timers()
-//            ->where(function($q) use ($start, $end)
-//            {
-//                $q->whereBetween('start', [$start, $end])
-//                    ->orWhereBetween('finish', [$start, $end]);
-//            })
-//            ->get();
     }
 
     /**
