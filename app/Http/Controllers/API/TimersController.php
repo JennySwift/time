@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Transformers\TimerTransformer;
 use App\Models\Activity;
 use App\Models\Timer;
+use App\Repositories\GraphsRepository;
 use App\Repositories\TimersRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,16 +16,17 @@ use Illuminate\Support\Facades\Auth;
 class TimersController extends Controller
 {
     /**
-     * @var TimersRepository
+     * @var GraphsRepository
      */
-    private $timersRepository;
+    private $graphsRepository;
 
     /**
-     * @param TimersRepository $timersRepository
+     * TimersController constructor.
+     * @param GraphsRepository $graphsRepository
      */
-    public function __construct(TimersRepository $timersRepository)
+    public function __construct(GraphsRepository $graphsRepository)
     {
-        $this->timersRepository = $timersRepository;
+        $this->graphsRepository = $graphsRepository;
     }
 
     /**
@@ -38,7 +40,7 @@ class TimersController extends Controller
         if ($request->has('byDate')) {
             $timers = Timer::forCurrentUser()->get();
 
-            return $this->timersRepository->getTimersInDateRange($timers);
+            return $this->graphsRepository->getTimersInDateRange($timers);
         }
 
         else {

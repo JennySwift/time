@@ -6,22 +6,7 @@ namespace App\Repositories;
 use App\Models\Timer;
 use Carbon\Carbon;
 
-class TimersRepository {
-
-    /**
-     *
-     * @param $entriesByDate
-     * @param $date
-     * @return int|string
-     */
-    public function getIndexOfItem($entriesByDate, $date)
-    {
-        foreach($entriesByDate as $key => $entry) {
-            if ($entry['date'] === $date) {
-                return $key;
-            }
-        }
-    }
+class GraphsRepository {
 
     /**
      * Sort entries by date
@@ -120,6 +105,21 @@ class TimersRepository {
         }
 
         return collect($entriesByDate)->reverse();
+    }
+
+    /**
+     *
+     * @param $entriesByDate
+     * @param $date
+     * @return int|string
+     */
+    private function getIndexOfItem($entriesByDate, $date)
+    {
+        foreach($entriesByDate as $key => $entry) {
+            if ($entry['date'] === $date) {
+                return $key;
+            }
+        }
     }
 
 
