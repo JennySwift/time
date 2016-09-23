@@ -84,10 +84,7 @@ class TimersController extends Controller
         $timer->activity()->associate($activity);
         $timer->save();
 
-        $timer = $this->transform($this->createItem($timer,
-            new TimerTransformer(['date' => $this->calculateFinishDate($timer)])))['data'];
-
-        return response($timer, Response::HTTP_CREATED);
+        return $this->respond($timer, new TimerTransformer(['date' => $this->calculateFinishDate($timer)]), 201);
     }
 
     /**
@@ -113,9 +110,7 @@ class TimersController extends Controller
 
         $finishDate = $this->calculateFinishDate($timer);
 
-        $timer = $this->transform($this->createItem($timer, new TimerTransformer(['date' => $finishDate])))['data'];
-
-        return response($timer, Response::HTTP_OK);
+        return $this->respond($timer, new TimerTransformer(['date' => $finishDate]), 200);
     }
 
     /**

@@ -52,9 +52,7 @@ class ActivitiesController extends Controller
 
         }
 
-        $activities = $this->transform($this->createCollection($activities, new ActivityTransformer($params)))['data'];
-
-        return response($activities, Response::HTTP_OK);
+        return $this->respond($activities, new ActivityTransformer($params), 200);
     }
 
     /**
@@ -68,9 +66,7 @@ class ActivitiesController extends Controller
         $activity->user()->associate(Auth::user());
         $activity->save();
 
-        $activity = $this->transform($this->createItem($activity, new ActivityTransformer))['data'];
-
-        return response($activity, Response::HTTP_CREATED);
+        return $this->respond($activity, new ActivityTransformer, 201);
     }
 
     /**
@@ -89,9 +85,7 @@ class ActivitiesController extends Controller
 
         $activity->update($data);
 
-        $activity = $this->transform($this->createItem($activity, new ActivityTransformer))['data'];
-
-        return response($activity, Response::HTTP_OK);
+        return $this->respond($activity, new ActivityTransformer, 200);
     }
 
     /**
