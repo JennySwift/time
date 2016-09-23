@@ -46,37 +46,17 @@
                     </thead>
 
                     <tbody>
-                    <tr
-                        v-for="timer in shared.timers
-                            | filterBy activitiesFilter in 'activity.data.name'
-                            | orderBy 'start' -1"
-                        v-link="{path: '/timers/' + timer.id}"
-                        v-on:click="selectTimer(timer)"
-                        class="timer pointer"
-                    >
-                        <td class="activity">
-                            <span v-bind:style="{'background': timer.activity.data.color}" class="label">{{ timer.activity.data.name }}</span>
-                        </td>
-
-                        <td class="duration">
-                            <span>{{ timer.hours | doubleDigits }}:{{ timer.minutes | doubleDigits }}</span>
-                        </td>
-
-                        <td>
-                            <span>{{ timer.durationInMinutesForDay | formatDurationFromMinutes }}</span>
-                        </td>
-
-                        <td>
-                            <span>{{ timer.start | formatDateTime 'hoursAndMinutes' }}</span>
-                            <span class="seconds">:{{ timer.start | formatDateTime 'seconds' }}</span>
-                        </td>
-
-                        <td>
-                            <span>{{ timer.finish | formatDateTime 'hoursAndMinutes' }}</span>
-                            <span class="seconds">:{{ timer.finish | formatDateTime 'seconds' }}</span>
-                        </td>
-
-                    </tr>
+                        <tr
+                            v-for="timer in shared.timers
+                                | filterBy activitiesFilter in 'activity.data.name'
+                                | orderBy 'start' -1"
+                            is="timer"
+                            :timer="timer"
+                            v-link="{path: '/timers/' + timer.id}"
+                            v-on:click="selectTimer(timer)"
+                            class="timer pointer"
+                        >
+                        </tr>
                     </tbody>
 
                 </table>
@@ -143,18 +123,13 @@
             formatDateTime: function (dateTime, format) {
                 return helpers.formatDateTime(dateTime, format);
             },
-            doubleDigits: function (number) {
-                if (number < 10) {
-                    return '0' + number;
-                }
-
-                return number;
-            },
             formatDurationFromMinutes: function (minutes) {
                 return helpers.formatDurationFromMinutes(minutes);
             }
         },
-        components: {},
+        components: {
+            'timer': require('./TimerComponent.vue')
+        },
         methods: {
 
             /**

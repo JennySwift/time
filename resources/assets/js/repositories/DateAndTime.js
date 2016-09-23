@@ -17,7 +17,12 @@ module.exports = {
         var hours = Math.floor(minutes / 60);
         minutes = minutes % 60;
 
-        return helpers.addZeros(hours) + ':' + helpers.addZeros(minutes);
+        return {
+            hours: helpers.addZeros(hours),
+            minutes: helpers.addZeros(minutes)
+        };
+
+        // return helpers.addZeros(hours) + ':' + helpers.addZeros(minutes);
     },
 
     /**
