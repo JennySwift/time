@@ -3,12 +3,11 @@
 use App\Models\Activity;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Http\Response;
 
 /**
- * Class ActivitiesTest
+ * Class ActivityIndexTest
  */
-class ActivitiesTest extends TestCase
+class ActivityIndexTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -18,34 +17,11 @@ class ActivitiesTest extends TestCase
      */
     public function it_gets_the_activities()
     {
-        $response = $this->call('GET', '/api/activities');
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
+        $content = $this->show('/api/activities');
 
         $this->checkActivityKeysExist($content[0]);
 
         $this->checkContent($content);
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    /**
-     *
-     * @param $content
-     */
-    private function checkContent($content)
-    {
-
-        $this->assertEquals('sleep', $content[0]['name']);
-
-        $this->assertEquals(3900, $content[0]['duration']['totalMinutes']);
-        $this->assertEquals(65, $content[0]['duration']['hours']);
-        $this->assertEquals(0, $content[0]['duration']['minutes']);
-
-        $this->assertEquals(300, $content[1]['duration']['totalMinutes']);
-        $this->assertEquals(5, $content[1]['duration']['hours']);
-        $this->assertEquals(0, $content[1]['duration']['minutes']);
-
     }
 
     /**
@@ -127,64 +103,22 @@ class ActivitiesTest extends TestCase
     }
 
     /**
-     * @test
-     * @return void
+     *
+     * @param $content
      */
-    public function it_can_create_an_activity()
+    private function checkContent($content)
     {
-        $activity = [
-            'name' => 'koala',
-            'color' => 'red'
-        ];
 
-        $response = $this->call('POST', '/api/activities', $activity);
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
+        $this->assertEquals('sleep', $content[0]['name']);
 
-        $this->checkActivityKeysExist($content);
+        $this->assertEquals(3900, $content[0]['duration']['totalMinutes']);
+        $this->assertEquals(65, $content[0]['duration']['hours']);
+        $this->assertEquals(0, $content[0]['duration']['minutes']);
 
-        $this->assertEquals('koala', $content['name']);
-        $this->assertEquals('red', $content['color']);
+        $this->assertEquals(300, $content[1]['duration']['totalMinutes']);
+        $this->assertEquals(5, $content[1]['duration']['hours']);
+        $this->assertEquals(0, $content[1]['duration']['minutes']);
 
-        $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
-    }
-
-    /**
-     * @test
-     * @return void
-     */
-    public function it_can_update_an_activity()
-    {
-        $activity = Activity::forCurrentUser()->first();
-        $response = $this->call('PUT', '/api/activities/' . $activity->id, [
-            'name' => 'numbat',
-            'color' => 'blue'
-        ]);
-
-        $content = json_decode($response->getContent(), true);
-//        dd($content);
-
-        $this->checkActivityKeysExist($content);
-
-        $this->assertEquals('numbat', $content['name']);
-        $this->assertEquals('blue', $content['color']);
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    /**
-     * @test
-     * @return void
-     */
-    public function it_can_delete_an_activity()
-    {
-        $activity = Activity::first();
-
-        $response = $this->call('DELETE', '/api/activities/' . $activity->id);
-        $this->assertEquals(204, $response->getStatusCode());
-
-        $response = $this->call('DELETE', '/api/activity/' . $activity->id);
-        $this->assertEquals(404, $response->getStatusCode());
     }
 
 }

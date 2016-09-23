@@ -13,7 +13,7 @@ trait Requests
      * @param $responseCode
      * @return mixed
      */
-    public function store($url, $data, $responseCode)
+    public function store($url, $data, $responseCode = 201)
     {
         $response = $this->apiCall('POST', $url, $data);
         $content = $this->getContent($response);
@@ -30,7 +30,7 @@ trait Requests
      * @param $responseCode
      * @return mixed
      */
-    public function update($url, $data, $responseCode)
+    public function update($url, $data, $responseCode = 200)
     {
         $response = $this->apiCall('PUT', $url, $data);
         $content = $this->getContent($response);
