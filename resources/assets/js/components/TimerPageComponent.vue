@@ -30,6 +30,7 @@
     <buttons
         :save="updateTimer"
         :redirect-to="redirectTo"
+        :destroy="deleteTimer"
     >
     </buttons>
 </template>
