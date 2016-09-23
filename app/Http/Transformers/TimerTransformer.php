@@ -45,7 +45,8 @@ class TimerTransformer extends TransformerAbstract
             'id' => $timer->id,
             'start' => $timer->start,
             'startDate' => $start->format('d/m/y'),
-            'finish' => $timer->finish
+            'finish' => $timer->finish,
+            'duration' => null
         ];
 
         if ($timer->finish) {

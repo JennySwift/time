@@ -21,20 +21,13 @@ class TimersStoreTest extends TestCase
         $start = '2015-12-01 21:00:00';
         $finish = '2015-12-02 08:30:00';
 
-        $sleep = [
+        $content = $this->store('/api/timers', [
             'start' => $start,
             'finish' => $finish,
             'activity_id' => Activity::where('name', 'sleep')->first()->id
-        ];
+        ]);
 
-        $response = $this->call('POST', '/api/timers', $sleep);
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
-
-        $this->assertArrayHasKey('id', $content);
-        $this->assertArrayHasKey('start', $content);
-//        $this->assertArrayHasKey('finish', $content);
-        $this->assertArrayHasKey('startDate', $content);
+        $this->checkTimerKeysExist($content);
 
         $this->assertEquals($start, $content['start']);
         $this->assertEquals($finish, $content['finish']);
@@ -42,8 +35,6 @@ class TimersStoreTest extends TestCase
         $this->assertEquals(690, $content['duration']['totalMinutes']);
         $this->assertEquals(11, $content['duration']['hours']);
         $this->assertEquals(30, $content['duration']['minutes']);
-
-        $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
     }
 
     /**
@@ -52,26 +43,15 @@ class TimersStoreTest extends TestCase
      */
     public function it_can_start_a_timer_then_stop_it()
     {
-        $this->logInUser();
-
-        $timer = [
+        $content = $this->store('/api/timers', [
             'start' => '2015-12-01 21:00:00',
             'activity_id' => Activity::where('name', 'work')->first()->id
-        ];
+        ]);
 
-        $response = $this->call('POST', '/api/timers', $timer);
-//        dd($response);
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
-
-        $this->assertArrayHasKey('id', $content);
-        $this->assertArrayHasKey('start', $content);
-        $this->assertArrayHasKey('startDate', $content);
+        $this->checkTimerKeysExist($content, false, false);
 
         $this->assertEquals('2015-12-01 21:00:00', $content['start']);
         $this->assertEquals('01/12/15', $content['startDate']);
-
-        $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
 
         $this->stopTimer(Timer::find($content['id']));
     }
@@ -82,19 +62,15 @@ class TimersStoreTest extends TestCase
      */
     private function stopTimer($timer)
     {
-        $response = $this->call('PUT', '/api/timers/'.$timer->id, [
+        $content = $this->update('/api/timers/'.$timer->id, [
             'finish' => '2015-12-01 21:00:01'
         ]);
-        $content = json_decode($response->getContent(), true);
-//        dd($content);
 
         $this->checkTimerKeysExist($content);
 
         $this->assertEquals('2015-12-01 21:00:01', $content['finish']);
         $this->assertEquals('2015-12-01 21:00:00', $content['start']);
         $this->assertEquals(2, $content['activity']['data']['id']);
-
-        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**
@@ -104,28 +80,16 @@ class TimersStoreTest extends TestCase
      */
     public function it_can_insert_a_manual_timer_entry()
     {
-        DB::beginTransaction();
-        $this->logInUser();
-
-        $timer = [
+        $content = $this->store('/api/timers', [
             'start' => '2015-12-01 21:00:00',
             'finish' => '2015-12-01 22:10:05',
             'activity_id' => Activity::where('name', 'work')->first()->id
-        ];
-
-        $response = $this->call('POST', '/api/timers', $timer);
-//        dd($response);
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
+        ]);
 
         $this->checkTimerKeysExist($content);
 
         $this->assertEquals('2015-12-01 21:00:00', $content['start']);
         $this->assertEquals('2015-12-01 22:10:05', $content['finish']);
         $this->assertEquals('01/12/15', $content['startDate']);
-
-        $this->assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
-
-        DB::rollBack();
     }
 }

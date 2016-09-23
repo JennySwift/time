@@ -2,16 +2,16 @@
 
 namespace Testing\Traits;
 
-use Illuminate\Http\Response;
-
 trait CheckKeys
 {
+
     /**
      *
      * @param $timer
-     * @param null $onlyBasicKeys
+     * @param bool $withDuration
+     * @param bool $withDurationForDay
      */
-    protected function checkTimerKeysExist($timer, $onlyBasicKeys = null)
+    protected function checkTimerKeysExist($timer, $withDuration = true, $withDurationForDay = false)
     {
         $this->assertArrayHasKey('id', $timer);
         $this->assertArrayHasKey('start', $timer);
@@ -19,12 +19,14 @@ trait CheckKeys
         $this->assertArrayHasKey('startDate', $timer);
         $this->assertArrayHasKey('activity', $timer);
 
-        $this->assertArrayHasKey('duration', $timer);
-        $this->assertArrayHasKey('totalMinutes', $timer['duration']);
-        $this->assertArrayHasKey('hours', $timer['duration']);
-        $this->assertArrayHasKey('minutes', $timer['duration']);
+        if ($withDuration) {
+            $this->assertArrayHasKey('duration', $timer);
+            $this->assertArrayHasKey('totalMinutes', $timer['duration']);
+            $this->assertArrayHasKey('hours', $timer['duration']);
+            $this->assertArrayHasKey('minutes', $timer['duration']);
+        }
 
-        if (!isset($onlyBasicKeys)) {
+        if ($withDurationForDay) {
             $this->assertArrayHasKey('durationForDay', $timer);
             $this->assertArrayHasKey('totalMinutes', $timer['durationForDay']);
             $this->assertArrayHasKey('hours', $timer['durationForDay']);

@@ -18,8 +18,7 @@ class TimersIndexTest extends TestCase
     public function it_gets_the_sleep_entries()
     {
         $this->markTestIncomplete();
-        $response = $this->call('GET', '/api/timers?byDate=true');
-        $content = json_decode($response->getContent(), true);
+        $content = $this->show('/api/timers?byDate=true');
 
         $this->assertArrayHasKey('date', $content[0]);
         $this->assertArrayHasKey('shortDate', $content[0]);
@@ -40,8 +39,6 @@ class TimersIndexTest extends TestCase
 
 //        $this->assertEquals('9:00pm', $content[0]['start']);
 //        $this->assertEquals('8:00am', $content[0]['finish']);
-
-        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**
@@ -96,12 +93,11 @@ class TimersIndexTest extends TestCase
     {
         $start = '2015-12-01 21:00:00';
 
-        $timer = [
+        $content = $this->store('/api/timers', [
             'start' => $start,
             'activity_id' => Activity::where('name', 'work')->first()->id
-        ];
+        ]);
 
-        $response = $this->call('POST', '/api/timers', $timer);
         $this->seeInDatabase('timers', ['start' => $start]);
     }
 
@@ -111,16 +107,12 @@ class TimersIndexTest extends TestCase
      */
     private function getTimers($date)
     {
-        $response = $this->call('GET', '/api/timers?date=' . $date->copy()->format('Y-m-d'));
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
+        $content = $this->show('/api/timers?date=' . $date->copy()->format('Y-m-d'));
 
         $this->checkTimerKeysExist($content[0]);
 
         //Todo: check the values are correct
         $this->assertContains($date->copy()->format('Y-m-d'), $content[0]['start']);
-
-        $this->assertEquals(200, $response->getStatusCode());
 
         return $content;
     }

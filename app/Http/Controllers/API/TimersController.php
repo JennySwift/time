@@ -136,16 +136,15 @@ class TimersController extends Controller
     }
 
     /**
-     * @return Response
+     *
+     * @return \App\Http\Controllers\Response|Response
      */
     public function checkForTimerInProgress()
     {
         $timerInProgress = Timer::forCurrentUser()->whereNull('finish')->first();
 
         if ($timerInProgress) {
-            $timerInProgress = $this->transform($this->createItem($timerInProgress, new TimerTransformer))['data'];
-
-            return response($timerInProgress, Response::HTTP_OK);
+            return $this->respond($timerInProgress, new TimerTransformer, 200);
         }
 
         return response([], Response::HTTP_OK);
