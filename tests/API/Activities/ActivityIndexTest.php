@@ -31,30 +31,43 @@ class ActivityIndexTest extends TestCase
      */
     public function it_can_get_the_activities_with_their_durations_for_the_week()
     {
-        $response = $this->call('GET', '/api/activities?forWeek=true&date=' . Carbon::yesterday()->format('Y-m-d'));
-        $content = json_decode($response->getContent(), true);
-//      dd($content);
-
+        $content = $this->show('/api/activities?forWeek=true&date=' . Carbon::today()->subDays(7)->format('Y-m-d'));
+//dd($content);
         $this->checkActivityKeysExist($content[0], true);
 
         $this->checkContent($content);
 
-        $this->assertEquals(1980, $content[0]['week']['totalMinutes']);
-        $this->assertEquals(1980, $content[0]['week']['hours']);
-        $this->assertEquals(1980, $content[0]['week']['minutes']);
+        //First activity
+        $this->assertEquals(0, $content[0]['week']['totalMinutes']);
+        $this->assertEquals(0, $content[0]['week']['hours']);
+        $this->assertEquals(0, $content[0]['week']['minutes']);
 
-        $this->assertEquals(990, $content[0]['week']['averageMinutesPerDay']);
+        $this->assertEquals(0, $content[0]['week']['dailyAverage']['totalMinutes']);
+        $this->assertEquals(0, $content[0]['week']['dailyAverage']['hours']);
+        $this->assertEquals(0, $content[0]['week']['dailyAverage']['minutes']);
 
-        $this->assertEquals(120, $content[1]['week']['totalMinutes']);
-        $this->assertEquals(120, $content[1]['week']['hours']);
-        $this->assertEquals(120, $content[1]['week']['minutes']);
+        //Second activity
+        $this->assertEquals(0, $content[1]['week']['totalMinutes']);
+        $this->assertEquals(0, $content[1]['week']['hours']);
+        $this->assertEquals(0, $content[1]['week']['minutes']);
 
-        $this->assertEquals(60, $content[1]['week']['averageMinutesPerDay']);
+        $this->assertEquals(0, $content[1]['week']['dailyAverage']['totalMinutes']);
+        $this->assertEquals(0, $content[1]['week']['dailyAverage']['hours']);
+        $this->assertEquals(0, $content[1]['week']['dailyAverage']['minutes']);
 
-        $this->assertEquals('untracked', $content[2]['name']);
-        $this->assertEquals(7980, $content[2]['totalMinutesForWeek']);
+        //Third activity
+        $this->assertEquals(120, $content[2]['week']['totalMinutes']);
+        $this->assertEquals(2, $content[2]['week']['hours']);
+        $this->assertEquals(0, $content[2]['week']['minutes']);
+        $this->assertEquals(130, $content[2]['duration']['totalMinutes']);
 
-        $this->assertEquals(200, $response->getStatusCode());
+        //Todo
+//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['totalMinutes']);
+//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['hours']);
+//        $this->assertEquals(0, $content[2]['week']['dailyAverage']['minutes']);
+
+//        $this->assertEquals('untracked', $content[2]['name']);
+//        $this->assertEquals(7980, $content[2]['totalMinutesForWeek']);
     }
 
 
