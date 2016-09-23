@@ -18,7 +18,7 @@
                 v-bind:style="{'background': activity.color}"
                 class="label label-default"
             >
-                {{ activity.name }} {{ formatDurationFromMinutes(activity.totalMinutesForDay).hours }}:{{ formatDurationFromMinutes(activity.totalMinutesForDay).minutes }}
+                {{ activity.name }} {{ activity.day.hours | doubleDigits }}:{{ activity.day.minutes | doubleDigits }}
             </span>
         </div>
 

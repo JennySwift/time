@@ -119,7 +119,7 @@ module.exports = {
      */
     getTotalMinutesForActivitiesForTheDay: function () {
         helpers.get({
-            url: '/api/activities/getTotalMinutesForDay?date=' + this.state.date.sql,
+            url: '/api/activities?forDay=true&date=' + this.state.date.sql,
             callback: function (response) {
                 this.state.activitiesWithDurationsForTheDay = response;
             }.bind(this)
@@ -131,7 +131,7 @@ module.exports = {
      */
     getTotalMinutesForActivitiesForTheWeek: function () {
         helpers.get({
-            url: '/api/activities/?date=' + this.state.date.sql,
+            url: '/api/activities/?forWeek=true&date=' + this.state.date.sql,
             callback: function (response) {
                 this.state.activitiesWithDurationsForTheWeek = response;
             }.bind(this)
