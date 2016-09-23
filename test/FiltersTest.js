@@ -2,7 +2,6 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 var Vue = require('vue');
 global.store = require('../resources/assets/js/repositories/Store');
-global.filters = require('../resources/assets/js/repositories/Filters');
 
 describe('filters', function () {
     it('can round a number to one decimal place', function () {
@@ -38,13 +37,13 @@ describe('filters', function () {
     });
 
     it('can format the minutes', function () {
-        var result = filters.formatDuration(60);
+        var result = helpers.formatDuration(60);
         assert.equal('01:00', result);
 
-        result = filters.formatDuration(61);
+        result = helpers.formatDuration(61);
         assert.equal('01:01', result);
 
-        result = filters.formatDuration(2254);
+        result = helpers.formatDuration(2254);
         assert.equal('37:34', result);
     });
 

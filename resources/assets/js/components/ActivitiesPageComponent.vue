@@ -37,7 +37,7 @@
         components: {},
         filters: {
             formatDuration: function (minutes) {
-                return filters.formatDuration(minutes);
+                return helpers.formatDuration(minutes);
             }
         },
         methods: {

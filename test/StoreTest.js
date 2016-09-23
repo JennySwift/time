@@ -2,7 +2,6 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 var Vue = require('vue');
 global.store = require('../resources/assets/js/repositories/Store');
-global.filters = require('../resources/assets/js/repositories/filters.js');
 global._ = require('underscore');
 
 describe('filters', function () {

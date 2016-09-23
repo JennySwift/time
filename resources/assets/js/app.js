@@ -16,7 +16,6 @@ var VueResource = require('vue-resource');
 Vue.use(VueResource);
 require('./config.js');
 global.helpers = require('./repositories/Helpers');
-global.filters = require('./repositories/Filters');
 Date.setLocale('en-AU');
 
 //Shared components

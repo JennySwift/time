@@ -48,5 +48,38 @@ module.exports = {
                 seconds: moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('ss')
             };
         }
-    }
+    },
+
+    /**
+     *
+     * @param seconds
+     * @returns {string}
+     */
+    formatDurationFromSeconds: function (seconds) {
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor(seconds / 60) % 60;
+        seconds = seconds % 60;
+
+        return this.addZeros(hours) + ':' + this.addZeros(minutes) + ':' + this.addZeros(seconds);
+    },
+
+    formatToDateTime: function (time) {
+        return Date.create(time).format('{yyyy}-{MM}-{dd} {HH}:{mm}:{ss}');
+    },
+
+    momentFormatToDateTime: function (time) {
+        return moment(time).format('YYYY-MM-DD HH:mm:ss');
+    },
+
+    formatDateToSql: function (date) {
+        return Date.create(date).format('{yyyy}-{MM}-{dd}');
+    },
+
+    formatDateToLong: function (date) {
+        return Date.create(date).format('{Weekday} {dd} {Month} {yyyy}');
+    },
+
+    formatTime: function (time) {
+        return Date.create(time).format('{HH}:{mm}:{ss}');
+    },
 };

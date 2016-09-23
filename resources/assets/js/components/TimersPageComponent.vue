@@ -141,7 +141,7 @@
         },
         filters: {
             formatDateTime: function (dateTime, format) {
-                return filters.formatDateTime(dateTime, format);
+                return helpers.formatDateTime(dateTime, format);
             },
             doubleDigits: function (number) {
                 if (number < 10) {
@@ -151,7 +151,7 @@
                 return number;
             },
             formatDuration: function (minutes) {
-                return filters.formatDuration(minutes);
+                return helpers.formatDuration(minutes);
             }
         },
         components: {},
