@@ -37,12 +37,12 @@ class ActivityIndexTest extends TestCase
         $this->checkContent($content);
 
         //First activity
-        $this->assertEquals(0, $content[0]['week']['totalMinutes']);
-        $this->assertEquals(0, $content[0]['week']['hours']);
+        $this->assertEquals(3780, $content[0]['week']['totalMinutes']);
+        $this->assertEquals(63, $content[0]['week']['hours']);
         $this->assertEquals(0, $content[0]['week']['minutes']);
 
-        $this->assertEquals(0, $content[0]['week']['dailyAverage']['totalMinutes']);
-        $this->assertEquals(0, $content[0]['week']['dailyAverage']['hours']);
+        $this->assertEquals(540, $content[0]['week']['dailyAverage']['totalMinutes']);
+        $this->assertEquals(9, $content[0]['week']['dailyAverage']['hours']);
         $this->assertEquals(0, $content[0]['week']['dailyAverage']['minutes']);
 
         //Second activity
@@ -147,8 +147,7 @@ class ActivityIndexTest extends TestCase
     public function it_can_get_the_total_minutes_for_the_day_for_the_activities()
     {
         $date = Carbon::today()->format('Y-m-d');
-        $response = $this->call('GET', '/api/activities?forDay=true&date=' . $date);
-        $content = json_decode($response->getContent(), true);
+        $content = $this->show('/api/activities?forDay=true&date=' . $date);
 //      dd($content);
 
         $this->checkActivityKeysExist($content[0], false, true);
@@ -156,9 +155,9 @@ class ActivityIndexTest extends TestCase
         $this->assertCount(3, $content);
 
         $this->assertEquals('sleep', $content[0]['name']);
-        $this->assertEquals(735, $content[0]['day']['totalMinutes']);
-        $this->assertEquals(12, $content[0]['day']['hours']);
-        $this->assertEquals(15, $content[0]['day']['minutes']);
+        $this->assertEquals(420, $content[0]['day']['totalMinutes']);
+        $this->assertEquals(7, $content[0]['day']['hours']);
+        $this->assertEquals(0, $content[0]['day']['minutes']);
 
         $this->assertEquals('work', $content[1]['name']);
         $this->assertEquals(60, $content[1]['day']['totalMinutes']);
@@ -167,8 +166,6 @@ class ActivityIndexTest extends TestCase
 
 //        $this->assertContains('untracked', $content[2]['name']);
 //        $this->assertEquals(645, $content[2]['day']['totalMinutes']);
-
-        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**
@@ -177,11 +174,11 @@ class ActivityIndexTest extends TestCase
      */
     private function checkContent($content)
     {
-
+//        dd($content);
         $this->assertEquals('sleep', $content[0]['name']);
 
-        $this->assertEquals(3900, $content[0]['duration']['totalMinutes']);
-        $this->assertEquals(65, $content[0]['duration']['hours']);
+        $this->assertEquals(7560, $content[0]['duration']['totalMinutes']);
+        $this->assertEquals(126, $content[0]['duration']['hours']);
         $this->assertEquals(0, $content[0]['duration']['minutes']);
 
         $this->assertEquals(300, $content[1]['duration']['totalMinutes']);

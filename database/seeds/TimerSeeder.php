@@ -37,15 +37,15 @@ class TimerSeeder extends Seeder
     }
 
     /**
-     * Create entries for the last 5 days.
+     *
      */
     private function createSleepEntries()
     {
-        foreach (range(0, 4) as $index) {
+        foreach (range(1,14) as $index) {
             $date = Carbon::today()->subDays($index);
 
-            $this->createTimer('sleep', $date->copy()->hour(16), $date->copy()->hour(17)->minute($index * 15));
-            $this->createTimer('sleep', $date->copy()->hour(21), $date->copy()->addDays(1)->hour(8)->minute($index * 15));
+            $this->createTimer('sleep', $date->copy()->hour(16), $date->copy()->hour(17));
+            $this->createTimer('sleep', $date->copy()->hour(23), $date->copy()->addDays(1)->hour(7));
         }
     }
 
