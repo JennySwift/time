@@ -24,9 +24,9 @@
             </ul>
         </li>
 
-        <li>
-            <a v-on:click="showFilters()" href="#" class="fa fa-search"></a>
-        </li>
+        <!--<li>-->
+            <!--<a v-on:click="showFilters()" href="#" class="fa fa-search"></a>-->
+        <!--</li>-->
 
         <!--User-->
         <li id="menu-dropdown" class="dropdown gravatar-li">
