@@ -40,6 +40,8 @@ class TimerSeeder extends Seeder
             $this->createTimer('reading', Carbon::yesterday()->hour(8)->minute(30), Carbon::yesterday()->hour(8)->minute(40));
             $this->createTimer('reading', Carbon::today()->subDays(7)->hour(8)->minute(30), Carbon::today()->subDays(7)->hour(10)->minute(30));
 
+            $this->createTimer('tennis', Carbon::today()->subDays(7)->hour(10)->minute(30), Carbon::today()->subDays(7)->hour(12)->minute(30));
+
             //Create an entry for walking each day, so I can test the daily average regardless of what day I run my tests
             foreach (range(0,6) as $index) {
                 $this->date = Carbon::today()->subDays($index);

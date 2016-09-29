@@ -79,7 +79,7 @@
                         <tr
                             v-for="activity in shared.activitiesWithDurationsForTheWeek
                                 | filterBy activitiesFilter in 'name'
-                                | orderBy orderActivities
+                                | orderBy 'week.totalMinutes * -1' 'duration.totalMinutes * -1'
                             "
                         >
                             <td class="activity">
