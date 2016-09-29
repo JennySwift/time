@@ -5917,18 +5917,6 @@ li {
 .hover:hover {
   background: #b5b5b5; }
 
-.checkbox-container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 4px; }
-  .checkbox-container label {
-    margin-bottom: 0;
-    font-weight: normal; }
-  .checkbox-container input {
-    margin-right: 5px; }
-
 .my-btn {
   background: #fff;
   border: 1px solid #ccc;
@@ -6134,74 +6122,21 @@ li {
     font-size: 18px;
     margin: 0 14px; }
 
-.checkbox-wrapper {
+.checkbox-container {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
-  align-items: center; }
-
-.cb-container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center; }
-  .cb-container .label-text {
-    padding: 0px 5px; }
-
-.cb-slider-wrapper {
-  width: 38px;
-  height: 16px;
-  border-radius: 8px;
-  background: black;
-  position: relative; }
-  .cb-slider-wrapper input {
-    visibility: hidden; }
-  .cb-slider-wrapper label span.label-icon {
-    background: red;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    cursor: pointer;
-    transition: all, .5s, ease; }
-  .cb-slider-wrapper input:checked + label span.label-icon {
-    background: green;
-    left: 23px; }
-
-.cb-fa-wrapper {
-  width: 40px;
-  height: 40px;
-  position: relative; }
-  .cb-fa-wrapper input {
-    visibility: hidden; }
-  .cb-fa-wrapper label {
-    text-align: center;
-    border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    cursor: pointer;
-    transition: all, .5s, ease; }
-    .cb-fa-wrapper label i {
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: auto;
-      top: 0;
-      bottom: 0;
-      color: green;
-      font-size: 24px;
-      opacity: .2; }
-  .cb-fa-wrapper input:checked + label i {
-    opacity: 1; }
+  align-items: center;
+  margin-bottom: 4px; }
+  .checkbox-container label {
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-weight: normal; }
+  .checkbox-container input {
+    margin-right: 5px;
+    box-shadow: none; }
+    .checkbox-container input:focus {
+      box-shadow: none; }
 
 #date-navigation-container {
   width: 100%; }
