@@ -38,14 +38,14 @@ class TimersController extends Controller
     {
         //This bit is for the graphs
         if ($request->has('byDate')) {
-            $timers = Timer::forCurrentUser()->get();
+            $timers = Timer::forCurrentUser()->orderBy('start', 'desc')->get();
 
             return $this->graphsRepository->getTimersInDateRange($timers);
         }
 
         else {
             //Return the timers for the date
-            $timers = Timer::forCurrentUser()->onDate($request->get('date'))->get();
+            $timers = Timer::forCurrentUser()->onDate($request->get('date'))->orderBy('start', 'desc')->get();
 
             return $this->respond($timers, new TimerTransformer(['date' => $request->get('date')]), 200);
         }
