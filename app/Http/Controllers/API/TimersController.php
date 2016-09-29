@@ -45,7 +45,7 @@ class TimersController extends Controller
 
         else {
             //Return the timers for the date
-            $timers = Timer::forCurrentUser()->onDate($request->get('date'))->orderBy('start', 'desc')->get();
+            $timers = Timer::forCurrentUser()->onDate($request->get('date'))->orderBy('start', 'desc')->with('activity')->get();
 
             return $this->respond($timers, new TimerTransformer(['date' => $request->get('date')]), 200);
         }

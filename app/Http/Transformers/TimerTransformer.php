@@ -71,7 +71,7 @@ class TimerTransformer extends TransformerAbstract
         }
 
         return $array;
-    }
+}
 
     /**
      *
@@ -80,9 +80,7 @@ class TimerTransformer extends TransformerAbstract
      */
     public function includeActivity(Timer $timer)
     {
-        $activity = $timer->activity;
-
-        return $this->item($activity, new ActivityTransformer);
+        return $this->item($timer->activity, new ActivityTransformer);
     }
 
 }
