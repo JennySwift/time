@@ -63,7 +63,7 @@
                 <p v-else>No timers here</p>
             </div>
 
-            <!--Activites with durations for the week-->
+            <!--Activities with durations for the week-->
             <div id="activities-with-durations-for-week">
                 <h2>Activities</h2>
                 <table class="table table-bordered">

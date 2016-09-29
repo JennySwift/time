@@ -45,18 +45,26 @@ module.exports = {
      * @returns {*}
      */
     formatDateTime: function (dateTime, format) {
+        dateTime = moment(dateTime, 'YYYY-MM-DD HH:mm:ss');
+
         if (!format) {
-            return moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('hh:mm:ssa DD/MM');
+            return dateTime.format('hh:mm:ssa DD/MM');
         }
         else if (format === 'seconds') {
-            return moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('ss a DD/MM');
+            return dateTime.format('ss');
         }
         else if (format === 'hoursAndMinutes') {
-            return moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('hh:mm');
+            return dateTime.format('hh:mm');
+        }
+        else if (format === 'date') {
+            return dateTime.format('DD/MM');
+        }
+        else if (format === 'a') {
+            return dateTime.format('a');
         }
         else if (format === 'object') {
             return {
-                seconds: moment(dateTime, 'YYYY-MM-DD HH:mm:ss').format('ss')
+                seconds: dateTime.format('ss')
             };
         }
     },

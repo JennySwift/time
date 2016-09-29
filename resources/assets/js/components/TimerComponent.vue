@@ -14,12 +14,14 @@
 
         <td>
             <span>{{ timer.start | formatDateTime 'hoursAndMinutes' }}</span>
-            <span class="seconds">:{{ timer.start | formatDateTime 'seconds' }}</span>
+            <span v-if="showSeconds" class="seconds">:{{ timer.start | formatDateTime 'seconds' }}</span>
+            <span >{{ timer.start | formatDateTime 'a' }}</span>
         </td>
 
         <td>
             <span>{{ timer.finish | formatDateTime 'hoursAndMinutes' }}</span>
-            <span class="seconds">:{{ timer.finish | formatDateTime 'seconds' }}</span>
+            <span v-if="showSeconds" class="seconds">:{{ timer.finish | formatDateTime 'seconds' }}</span>
+            <span >{{ timer.finish | formatDateTime 'a' }}</span>
         </td>
 
     </tr>
@@ -27,6 +29,11 @@
 
 <script>
     module.exports = {
+        data: function () {
+            return {
+                showSeconds: false
+            }
+        },
         filters: {
 //            formatDurationFromMinutes: function (minutes) {
 //                return helpers.formatDurationFromMinutes(minutes);
