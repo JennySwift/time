@@ -82,9 +82,9 @@
             /**
             * @param activity
             */
-            getActivity: function (activity) {
+            getActivity: function () {
                 helpers.get({
-                    url: '/api/activities/' + activity.id,
+                    url: '/api/activities/' + this.$route.params.id,
                     storeProperty: 'activity',
                     loadedProperty: 'activityLoaded'
                 });
