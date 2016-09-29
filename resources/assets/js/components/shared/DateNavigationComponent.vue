@@ -69,7 +69,7 @@
     var DatesRepository = require('../../repositories/DatesRepository');
     var $ = require('jquery');
 
-    // require('sugar');
+    var moment = require('moment');
 
     module.exports = {
         template: '#date-navigation-template',
@@ -83,7 +83,12 @@
             'shared.date.typed': function (newValue, oldValue) {
                 $("#date").val(this.shared.date.typed);
                 store.getTimers();
-                store.getTotalMinutes();
+                store.getTotalMinutesForActivitiesForTheDay();
+
+                //Only get the total minutes for the week if it's a different week
+                if (helpers.getWeekNumber(helpers.formatDateToSql(oldValue)) !== helpers.getWeekNumber(helpers.formatDateToSql(newValue))) {
+                    store.getTotalMinutesForActivitiesForTheWeek();
+                }
             }
         },
         methods: {

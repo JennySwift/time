@@ -31,6 +31,7 @@ module.exports = {
     formatTime: dateAndTime.formatTime,
     formatDateToSql: dateAndTime.formatDateToSql,
     formatDateToLong: dateAndTime.formatDateToLong,
+    getWeekNumber: dateAndTime.getWeekNumber,
 
     /**
      *

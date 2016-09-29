@@ -1,9 +1,30 @@
 var expect = require('chai').expect;
+var assert = require('chai').assert;
 var Vue = require('vue');
 global.store = require('../resources/assets/js/repositories/Store');
 global.helpers = require('../resources/assets/js/repositories/Helpers');
 Date.setLocale('en-AU');
 global.$ = require('jquery');
+
+describe('date methods', function () {
+    it.only('can get the week number', function () {
+        //Thursday
+        var result = helpers.getWeekNumber('2016-09-29');
+        assert.equal(result, 39);
+
+        //Saturday
+        var result = helpers.getWeekNumber('2016-10-01');
+        assert.equal(result, 39);
+
+        //Sunday
+        var result = helpers.getWeekNumber('2016-10-02');
+        assert.equal(result, 40);
+
+        //Monday
+        var result = helpers.getWeekNumber('2016-10-03');
+        assert.equal(result, 40);
+    });
+});
 
 
 describe('date navigation component', function () {

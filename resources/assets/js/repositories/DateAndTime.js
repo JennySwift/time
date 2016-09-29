@@ -3,6 +3,16 @@ var moment = require('moment');
 module.exports = {
 
 
+    getWeekNumber: function (date) {
+        date = moment(date);
+        var weekNumber = parseInt(date.format('W'));
+
+        if (date.day() === 0) {
+            //If I don't do this, it makes Sunday the last day of the week instead of the first day of a new week
+            weekNumber++;
+        }
+        return weekNumber;
+    },
 
     /**
      *
