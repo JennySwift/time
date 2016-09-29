@@ -43,6 +43,31 @@ class Activity extends Model
     }
 
     /**
+     *
+     * @param $startOfWeek
+     * @param $endOfWeek
+     * @return mixed
+     */
+    public function timersForWeek($startOfWeek, $endOfWeek)
+    {
+        $timers = $this->hasMany('App\Models\Timer')
+            ->where(function ($q) use ($startOfWeek, $endOfWeek) {
+                $q->where(function ($q) use ($startOfWeek, $endOfWeek) {
+                    $q->where('start', '>', $startOfWeek)
+                        ->where('start', '<', $endOfWeek);
+                });
+                $q->orWhere(function ($q) use ($startOfWeek, $endOfWeek) {
+                    $q->where('finish', '>', $startOfWeek)
+                        ->where('finish', '<', $endOfWeek);
+                });
+            })
+            ->whereNotNull('finish')
+            ->get();
+
+        return $timers;
+    }
+
+    /**
      * Get total minutes on an activity for all time
      * @return int
      */
@@ -92,11 +117,22 @@ class Activity extends Model
         $endOfWeek = Carbon::createFromFormat('Y-m-d', $date)->endOfWeek();
 
         $total = 0;
-        $day = $endOfWeek->copy();
 
-        while ($day >= $startOfWeek) {
-            $total += $this->calculateTotalMinutesForDay($day->copy()->startOfDay(), $day->copy()->endOfDay());
-            $day = $day->subDay();
+        foreach($this->timersForWeek($startOfWeek, $endOfWeek) as $timer) {
+            $total+= $timer->totalMinutes;
+
+            $finish = Carbon::createFromFormat('Y-m-d H:i:s', $timer->finish);
+            $start = Carbon::createFromFormat('Y-m-d H:i:s', $timer->start);
+
+            //Subtract any time the timer ran for before the start of the week
+            if ($start < $startOfWeek) {
+                $total-=$startOfWeek->diffInMinutes($start);
+            }
+
+            //Subtract any time the timer continues after the end of the week
+            if ($finish > $endOfWeek) {
+                $total-=$endOfWeek->diffInMinutes($finish);
+            }
         }
 
         return $total;
