@@ -40,6 +40,7 @@ class ActivitiesController extends Controller
         if ($request->has('date')) {
             $date = $request->get('date');
             $params = ['date' => $date];
+            $activities = $activities->with('timers');
 
             if ($request->has('forWeek')) {
                 $params['forWeek'] = true;
