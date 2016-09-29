@@ -136,9 +136,9 @@
             'timer': require('./TimerComponent.vue')
         },
         methods: {
-            orderActivities: function (a, b) {
-                return a.week.totalMinutes < b.week.totalMinutes;
-            },
+//            orderActivities: function (a, b) {
+//                return a.week.totalMinutes < b.week.totalMinutes;
+//            },
 
             /**
              *

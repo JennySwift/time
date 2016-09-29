@@ -6200,12 +6200,11 @@ li {
         line-height: 23px; }
 
 #loading {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   margin: auto;
-  font-size: 40px;
-  color: #5bc0de;
+  color: #24CCB4;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -6214,23 +6213,9 @@ li {
   align-items: center;
   width: 100%;
   height: 60px;
-  z-index: 99; }
-
-#page-loading {
-  background: white;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 99;
-  font-size: 40px;
-  color: #5bc0de;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center; }
+  z-index: 9999; }
+  #loading .fa {
+    font-size: 40px; }
 
 .swal2-modal button {
   margin-right: 5px;
