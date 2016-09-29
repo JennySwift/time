@@ -17,6 +17,10 @@
                     <a v-if="shared.showTimerInProgress" v-on:click="hideTimerInProgress()" href="#">Hide Timer In Progress</a>
                     <a v-else v-on:click="showTimerInProgress()" href="#">Show Timer In Progress</a>
                 </li>
+                <li>
+                    <a v-if="!shared.showSeconds" v-on:click="toggleSeconds()" href="#">Show Seconds</a>
+                    <a v-else v-on:click="toggleSeconds()" href="#">Hide Seconds</a>
+                </li>
             </ul>
         </li>
 
@@ -59,6 +63,13 @@
              */
             showFilters: function () {
                 store.set(true, 'showFilters')
+            },
+
+            /**
+             *
+             */
+            toggleSeconds: function () {
+                store.toggle('showSeconds');
             },
 
             /**

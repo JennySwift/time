@@ -77,4 +77,16 @@ describe('filters', function () {
 
         expect(store.state.exercises).to.eql(exercises);
     });
+
+    describe('toggling', function () {
+        it('can toggle a store property', function () {
+            assert.isFalse(store.state.showSeconds);
+            store.toggle('showSeconds');
+            assert.isTrue(store.state.showSeconds);
+            store.toggle('showSeconds');
+            assert.isFalse(store.state.showSeconds);
+        });
+    })
+
+
 });

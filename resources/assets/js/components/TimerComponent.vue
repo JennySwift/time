@@ -13,14 +13,12 @@
         </td>
 
         <td>
-            <span>{{ timer.start | formatDateTime 'hoursAndMinutes' }}</span>
-            <span v-if="showSeconds" class="seconds">:{{ timer.start | formatDateTime 'seconds' }}</span>
+            <span>{{ timer.start | formatDateTime 'hoursAndMinutes' }}</span><span v-if="shared.showSeconds" class="seconds">:{{ timer.start | formatDateTime 'seconds' }}</span>
             <span >{{ timer.start | formatDateTime 'a' }}</span>
         </td>
 
         <td>
-            <span>{{ timer.finish | formatDateTime 'hoursAndMinutes' }}</span>
-            <span v-if="showSeconds" class="seconds">:{{ timer.finish | formatDateTime 'seconds' }}</span>
+            <span>{{ timer.finish | formatDateTime 'hoursAndMinutes' }}</span><span v-if="shared.showSeconds" class="seconds">:{{ timer.finish | formatDateTime 'seconds' }}</span>
             <span >{{ timer.finish | formatDateTime 'a' }}</span>
         </td>
 
@@ -31,7 +29,7 @@
     module.exports = {
         data: function () {
             return {
-                showSeconds: false
+                shared: store.state
             }
         },
         filters: {

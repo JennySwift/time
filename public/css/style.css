@@ -6401,9 +6401,6 @@ label.input-group-addon {
   #timers-page #activities-and-timers-container table td, #timers-page #activities-and-timers-container table th {
     padding: 7px 5px;
     margin: 0; }
-    #timers-page #activities-and-timers-container table td .seconds, #timers-page #activities-and-timers-container table th .seconds {
-      font-weight: lighter;
-      margin-left: 3px; }
   #timers-page #activities-and-timers-container table td {
     text-align: right; }
     #timers-page #activities-and-timers-container table td.activity {

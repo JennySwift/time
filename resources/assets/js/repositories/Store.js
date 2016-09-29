@@ -18,6 +18,7 @@ module.exports = {
         },
         loading: false,
         showTimerInProgress: true,
+        showSeconds: false,
         activities: [],
         activitiesLoaded: false,
         activity: {},
@@ -165,6 +166,14 @@ module.exports = {
      */
     set: function (data, path) {
         object.set(this.state, path, data);
+    },
+
+    /**
+     * Toggle a property (can be nested)
+     * @param path
+     */
+    toggle: function (path) {
+        object.set(this.state, path, !object.get(this.state, path));
     },
 
     /**

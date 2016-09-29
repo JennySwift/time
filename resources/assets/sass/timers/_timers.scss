@@ -1,7 +1,7 @@
-@mixin seconds {
-    font-weight: lighter;
-    margin-left: 3px;
-}
+//@mixin seconds {
+//    font-weight: lighter;
+//    margin-left: 3px;
+//}
 
 #timers-page {
     #activities-with-durations-for-day {
@@ -27,9 +27,9 @@
             td, th {
                 padding: 7px 5px;
                 margin: 0;
-                .seconds {
-                    @include seconds;
-                }
+                //.seconds {
+                //    @include seconds;
+                //}
             }
             td {
                 text-align: right;
