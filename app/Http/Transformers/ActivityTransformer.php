@@ -49,7 +49,7 @@ class ActivityTransformer extends TransformerAbstract
             if (isset($this->params['forWeek'])) {
                 $totalMinutesForWeek = $activity->getTotalMinutesForWeek($date);
 
-                $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date);
+                $dailyAverageMinutes = $activity->calculateAverageMinutesPerDayForWeek($date, $totalMinutesForWeek);
 
                 $array['week'] = [
                     'totalMinutes' => $totalMinutesForWeek,
