@@ -77,9 +77,6 @@ class TimersController extends Controller
         $timer->user()->associate(Auth::user());
 
         $activity = Activity::find($request->get('activity_id'));
-        if (!$activity) {
-            $activity = Activity::forCurrentUser()->where('name', 'sleep')->first();
-        }
 
         $timer->activity()->associate($activity);
         $timer->save();

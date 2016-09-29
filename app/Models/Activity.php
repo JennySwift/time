@@ -49,7 +49,7 @@ class Activity extends Model
     public function getTotalMinutesAttribute()
     {
         $total = 0;
-        foreach ($this->timers()->get() as $timer) {
+        foreach ($this->timers as $timer) {
             if ($timer->finish) {
                 $total += $timer->totalMinutes;
             }
