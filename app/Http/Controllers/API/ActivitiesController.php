@@ -34,7 +34,7 @@ class ActivitiesController extends Controller
      */
     public function index(Request $request)
     {
-        $activities = Activity::forCurrentUser()->get();
+        $activities = Activity::forCurrentUser();
 
         $params = null;
         if ($request->has('date')) {
@@ -47,11 +47,11 @@ class ActivitiesController extends Controller
 
             if ($request->has('forDay')) {
                 $params['forDay'] = true;
-                $activities = Activity::forCurrentUser()->onDate($date)->get();
+                $activities = $activities->onDate($date);
             }
-
         }
 
+        $activities = $activities->get();
         return $this->respond($activities, new ActivityTransformer($params), 200);
     }
 
