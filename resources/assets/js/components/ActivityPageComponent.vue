@@ -76,9 +76,22 @@
                         message: 'Activity deleted',
                         redirectTo: this.redirectTo
                     });
-                };
+                }
+            },
 
+            /**
+            * @param activity
+            */
+            getActivity: function (activity) {
+                helpers.get({
+                    url: '/api/activities/' + activity.id,
+                    storeProperty: 'activity',
+                    loadedProperty: 'activityLoaded'
+                });
             }
+        },
+        ready: function () {
+            this.getActivity();
         }
     };
 </script>

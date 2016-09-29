@@ -56,6 +56,17 @@ class ActivitiesController extends Controller
     }
 
     /**
+     * GET /api/activities/{activities}
+     * @param Request $request
+     * @param Activity $activity
+     * @return Response
+     */
+    public function show(Request $request, Activity $activity)
+    {
+        return $this->respond($activity, new ActivityTransformer, 200);
+    }
+
+    /**
      *
      * @param Request $request
      * @return Response

@@ -81,6 +81,8 @@
                                 | filterBy activitiesFilter in 'name'
                                 | orderBy 'week.totalMinutes * -1' 'duration.totalMinutes * -1'
                             "
+                            v-link="{path: '/activities/' + activity.id}"
+                            class="pointer"
                         >
                             <td class="activity">
                                 <span

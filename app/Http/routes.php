@@ -19,5 +19,5 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware' => ['auth', 'owner'], 'namespace' => 'API', 'prefix' => 'api'], function () {
     Route::get('timers/checkForTimerInProgress', 'TimersController@checkForTimerInProgress');
     Route::resource('timers', 'TimersController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
-    Route::resource('activities', 'ActivitiesController', ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::resource('activities', 'ActivitiesController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
