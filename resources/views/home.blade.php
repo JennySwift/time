@@ -12,7 +12,7 @@
 <loading></loading>
 
 
-<div class="container">
+<div class="main">
     <router-view></router-view>
 </div>
 
