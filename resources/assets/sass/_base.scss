@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-	padding-top: 63px;
+	padding-top: $navHeight + 6px;
     color: #777;
 	// padding-bottom: 50px;
 	@media (max-width: 600px) {
@@ -28,7 +28,7 @@ body {
     .main {
         padding-bottom: $footerHeight;
         min-height: 100%;
-		padding-top: $navHeight + 3px;
+		margin: 0 20px;
     }
     footer {
         display: flex;

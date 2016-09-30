@@ -23,23 +23,23 @@ class ActivitySeeder extends Seeder
         $activities = [
             [
                 'name' => 'sleep',
-                'color' => '#5cb85c'
+                'color' => '#777'
             ],
             [
-                'name' => 'work',
-                'color' => '#5bc0de'
+                'name' => 'some project',
+                'color' => '#24CCB4'
             ],
             [
                 'name' => 'reading',
-                'color' => 'pink'
+                'color' => '#20b6a1'
             ],
             [
                 'name' => 'walking',
-                'color' => 'red'
+                'color' => '#ffcc33'
             ],
             [
                 'name' => 'tennis',
-                'color' => 'green'
+                'color' => '#ffb347'
             ]
         ];
 

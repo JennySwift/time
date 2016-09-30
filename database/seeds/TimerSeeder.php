@@ -69,7 +69,7 @@ class TimerSeeder extends Seeder
         foreach (range(0, 4) as $index) {
             $date = Carbon::today()->subDays($index);
 
-            $this->createTimer('work', $date->copy()->hour(13), $date->copy()->hour(14));
+            $this->createTimer('some project', $date->copy()->hour(13), $date->copy()->hour(14));
         }
     }
 

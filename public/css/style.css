@@ -5737,7 +5737,7 @@ html, body {
   background: #fff; }
 
 body {
-  padding-top: 63px;
+  padding-top: 41px;
   color: #777; }
   @media (max-width: 600px) {
     body {
@@ -5751,7 +5751,7 @@ body {
   body .main {
     padding-bottom: 25px;
     min-height: 100%;
-    padding-top: 38px; }
+    margin: 0 20px; }
   body footer {
     display: -ms-flexbox;
     display: flex;
