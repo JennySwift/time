@@ -1,8 +1,7 @@
 <template>
     <div id="activities">
 
-        <h3>Activities</h3>
-
+        <h1 class="top-heading">Activities</h1>
         <table class="table table-bordered">
             <thead>
             <tr>

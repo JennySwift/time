@@ -5886,6 +5886,10 @@ li {
   cursor: pointer;
   color: #d9534f; }
 
+.top-heading {
+  margin-top: 0;
+  padding-top: 20px; }
+
 .btn-success:hover {
   background: #2fdac2;
   border-color: #24CCB4; }
@@ -6433,25 +6437,28 @@ label.input-group-addon {
   width: 100%;
   margin-top: 5px; }
 
-#activities td {
-  text-align: right; }
-
-#activities #new-activity {
-  max-width: 400px;
-  margin: auto; }
-  #activities #new-activity button {
-    width: 100%; }
-  @media (max-width: 320px) {
-    #activities #new-activity .form-group {
-      width: 100%; } }
-
-#activities .activity {
-  cursor: pointer; }
-  #activities .activity .activity-column {
-    text-align: left; }
+#activities {
+  padding-top: 20px; }
+  #activities td {
+    text-align: right; }
+  #activities #new-activity {
+    max-width: 400px;
+    margin: auto; }
+    #activities #new-activity button {
+      width: 100%; }
     @media (max-width: 320px) {
-      #activities .activity .activity-column {
-        max-width: 80px;
-        overflow: scroll; } }
+      #activities #new-activity .form-group {
+        width: 100%; } }
+  #activities .activity {
+    cursor: pointer; }
+    #activities .activity .activity-column {
+      text-align: left; }
+      @media (max-width: 320px) {
+        #activities .activity .activity-column {
+          max-width: 80px;
+          overflow: scroll; } }
+
+#welcome-page {
+  font-size: 18px; }
 
 /*# sourceMappingURL=style.css.map */
