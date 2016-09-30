@@ -24,11 +24,11 @@ html, body {
 $footerHeight: 25px;
 
 body {
-    padding-top: 55px;
 	@include characterFont;
     .main {
         padding-bottom: $footerHeight;
         min-height: 100%;
+		padding-top: $navHeight + 3px;
     }
     footer {
         display: flex;

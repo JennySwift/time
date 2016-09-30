@@ -5747,11 +5747,11 @@ html, body {
   height: 100%; }
 
 body {
-  padding-top: 55px;
   font-family: "Annie Use Your Telescope"; }
   body .main {
     padding-bottom: 25px;
-    min-height: 100%; }
+    min-height: 100%;
+    padding-top: 38px; }
   body footer {
     display: -ms-flexbox;
     display: flex;
@@ -6021,7 +6021,7 @@ li {
     -ms-flex-pack: center;
     justify-content: center;
     position: relative;
-    height: 44px; }
+    height: 35px; }
     #navbar > li > a {
       transition: all .5s ease; }
   #navbar a {
