@@ -5861,15 +5861,6 @@ li {
   h1 {
     font-size: 27px; } }
 
-#home-container, #home-row {
-  height: 100%; }
-
-.main {
-  height: 100%; }
-
-.container {
-  width: 100%; }
-
 .selected {
   background: #5bc0de; }
 
