@@ -4,6 +4,9 @@ Vue.use(VueRouter);
 global.router = new VueRouter({hashbang: false});
 
 router.map({
+    '/welcome': {
+        component: require('./components/WelcomePageComponent.vue')
+    },
     '/timers': {
         component: require('./components/TimersPageComponent.vue'),
         subRoutes: {
@@ -33,7 +36,7 @@ router.map({
 });
 
 router.redirect({
-    '/': '/timers'
+    '/': '/welcome'
 });
 
 var App = Vue.component('app', require('./components/AppComponent'));

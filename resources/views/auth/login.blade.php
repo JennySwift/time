@@ -52,6 +52,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+
     </form>
 </div>
 @include('shared.footer.footer')
